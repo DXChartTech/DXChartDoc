@@ -7,5 +7,6 @@ DXChart를 처음 사용하는 유저을 위한 tutorial입니다.
 자세한 내용은 추후 추가할 예정입니다.
 
 Tutorial : [Tutorial](./DXChart_Tutorial_main.md) 
-## 목차
-1. 목차
+
+# DXChart에 대한 샘플소스
+자세한 내용은 추후 추가할 예정입니다.
