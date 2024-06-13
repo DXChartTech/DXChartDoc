@@ -1,3 +1,22 @@
+<style>
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: auto; /* 테이블을 가운데 정렬 */
+    }
+    th, td {
+        border: 1px solid black;
+        text-align: center; /* 텍스트를 가운데 정렬 */
+        padding: 10px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+
+
+
 > **DXChart 개발자 튜토리얼**
 >
 > **(Nexacro용)**
@@ -105,25 +124,25 @@
 
 2)  새로운 프로젝트를 생성합니다.
 
-    ![생성하기](생성하기.png)
+    ![생성하기](../assets/img/image1.png)
 
 3)  새로운 창이 열리면 Project Name 항목에 프로젝트 이름을 입력하고
     [Next] 버튼을 클릭합니다.
 
-    ![다음버튼](다음버튼.png)
+    ![다음버튼](../assets/img/image2.png))
 
 4)  Screen 설정값은 기본값으로 놔두고 [Next] 버튼을 클릭합니다.
 
-    ![다음버튼2](다음버튼2.png)
+    ![다음버튼2](../assets/img/image3.png)
 
 5)  Frame 설정값도 기본값으로 놔두고 [Finish] 버튼을 클릭합니다.
 
-    ![프레임설정](프레임설정.png)
+    ![프레임설정](../assets/img/image4.png)
 
 6)  Project Explorer 영역에 앞에서 입력한 프로젝트명으로 프로젝트가
     생성된 것을 확인합니다.
 
-    ![완성](프로젝트완성.png)
+    ![완성](../assets/img/image5.png)
 
 ## 차트모듈 설치하기
 
@@ -131,26 +150,26 @@
 
 2)  [Module Package(.xmodule)]을 선택하고 [Next]를 클릭합니다.
 
-    ![모듈설치](모듈설치.png)
+    ![모듈설치](../assets/img/image6.png)
 
 3)  준비된 DxChart.xmodule파일을 선택하고 [Next]를 클릭합니다.
 
-    ![모듈설치2](모듈설치2.png)
+    ![모듈설치2](../assets/img/image7.png)
 
 4)  [Install]버튼을 클릭합니다.
 
-    ![인스톨](인스톨.png)
+    ![인스톨](../assets/img/image8.png)
 
 5)  [Finish]버튼을 클릭합니다.
 
-    ![완료](완료.png)
+    ![완료](../assets/img/image9.png)
 
 6)  설치가 끝나면 프로젝트 파일을 Reload할지를 묻는 Confirm메시지가
     표시됩니다.
 
     [Yes]를 클릭합니다.
 
-    ![컨펌](컨펌.png)
+    ![컨펌](../assets/img/image10.png)
 
 7)  DXChart가 설치된 것을 확인합니다.
 
@@ -161,27 +180,27 @@
 
 -   [Objects]에 "ChartJS"가 추가되어 있는 것을 확인합니다.
 
-    ![종료](종료.png)
+    ![종료](../assets/img/image11.png)
 
 ## 샘플화면 만들기
 
 1)  작성할 화면을 오픈합니다. (FrameBase::Frame_Work.xfdl)
 
-    ![샘플화면](샘플화면.png)
+    ![샘플화면](../assets/img/image12.png)
 
 2)  Chart 컴포넌트를 추가합니다.
 
     컴포넌트의 아이디는 변경을 하지 않으면 기본적으로 "ChartJS00"으로
     생성됩니다.
 
-    ![샘플화면2](image-1.png)
+    ![샘플화면2](../assets/img/image13.png)
 
 3)  버튼을 추가합니다.
 
     컴포넌트의 아이디는 변경을 하지 않으면 기본적으로 "Button00"으로
     생성됩니다.
 
-    ![버튼](image-2.png)
+    ![버튼](../assets/img/image14.png)
 
 4)  데이터 생성하기
 
@@ -190,26 +209,24 @@
     컴포넌트의 아이디는 변경을 하지 않으면 기본적으로 "Dataset00"으로
     생성됩니다.
 
-    ![데이터](image-3.png)
+    ![데이터](../assets/img/image15.png)
 
 5)  Dataset을 추가한 후 데이터셋을 더블클릭하면, [Dataset Editor]창이
     표시됩니다.
 
-    ![데이터2](image-4.png)
+    ![데이터2](../assets/img/image16.png)
 
 6)  [Dataset Editor]창 하단의 [Source]탭을 클릭합니다.
 
-    ![데이터3](image-5.png)
+    ![데이터3](../assets/img/image17.png)
 
 7)  [Dataset Source Editor]팝업이 표시됩니다.
 
-    ![스크린샷, 디스플레이, 컴퓨터, 화면이(가) 표시된 사진 자동 생성된
-    설명](media/image18.png)
+    ![데이터4](../assets/img/image18.png)
 
 8)  아래의 내용을 창에 입력 후 [OK]를 클릭합니다.
 
-    ![텍스트, 디스플레이, 스크린샷, 소프트웨어이(가) 표시된 사진 자동
-    생성된 설명](media/image19.png)
+    ![데이터5](../assets/img/image19.png)
 
 ```html 
     [데이터셋 내용]
@@ -269,9 +286,7 @@
 
 1) 생성한 버튼을 더블클릭하고 스크립트를 작성합니다.
 
-    ![텍스트, 스크린샷, 폰트, 번호이(가) 표시된 사진 자동 생성된
-    설명](media/image20.png){width="3.3650524934383204in"
-    height="1.718989501312336in"}
+    ![함수1](../assets/img/image20.png)
 
 2) [버튼 처리 내용]
 
@@ -320,11 +335,9 @@
     Quick View를 실행합니다.(Browser는 Chrome 또는 Microsoft Edge을
     선택합니다.)
 
-    ![텍스트, 스크린샷, 폰트, 소프트웨어이(가) 표시된 사진 자동 생성된
-    설명](media/image21.png){width="4.162982283464567in"
-    height="0.9509350393700787in"}
+    ![함수2](../assets/img/image21.png)
 
-    \[실행 결과\]
+    [실행 결과]
 
 
 4)  버튼을 클릭합니다.
@@ -332,10 +345,10 @@
 
 5)  결과를 확인합니다.
 
-    ![텍스트, 도표, 그래프, 스크린샷이(가) 표시된 사진 자동 생성된
-    설명](media/image22.png){width="4.297011154855643in"
-    height="2.2946587926509188in"}
+    ![함수3](../assets/img/image22.png)
 
+
+---
 
 
 
@@ -579,15 +592,15 @@
 
 bind컬럼지정/CSV배영/2차원배열등로 표현되어 지정 가능합니다.
 
-형식: data : \[ \[첫번째 차트 데이터\] , \[두번째 차트 데이터\] ,
-\[세번째 차트 데이터\]\]
+형식: data : [ [첫번째 차트 데이터] , [두번째 차트 데이터] ,
+[세번째 차트 데이터]]
 
-사용 예 : data : \["bind:Column0","bind:Column1"\] (binddataset을
+사용 예 : data : ["bind:Column0","bind:Column1"] (binddataset을
 지정한경우)
 
-data: \["123,123,123,123","123,123,123,1234"\] (CSV데이터의 배열)
+data: ["123,123,123,123","123,123,123,1234"] (CSV데이터의 배열)
 
-data: \[\[123,123,123,123\],\[123,123,123,1234\]\] (2차원 배열)
+data: [[123,123,123,123],[123,123,123,1234]] (2차원 배열)
 
 ---
 ### binddataset Property
@@ -608,13 +621,9 @@ data: \[\[123,123,123,123\],\[123,123,123,1234\]\] (2차원 배열)
 
 ### Margin (옵션 - margin 그룹)
 
-![텍스트, 스크린샷, 그래프, 도표이(가) 표시된 사진 자동 생성된
-설명](media/image23.png){width="5.708333333333333in"
-height="2.860313867016623in"}
+![Margin](../assets/img/image23.png)
 
-![텍스트, 스크린샷, 도표, 라인이(가) 표시된 사진 자동 생성된
-설명](media/image24.png){width="2.6770833333333335in"
-height="2.5411187664041996in"}
+![Margin2](../assets/img/image24.png)
 
   <table>
     <tr>
@@ -668,8 +677,7 @@ height="2.5411187664041996in"}
 아래는 차트의 Margin Properties 설정하기 튜토리얼 입니다.
 
 
-![스크린샷, 그래프, 라인, 도표이(가) 표시된 사진 자동 생성된
- 설명](media/image25.png)
+![Margin3](../assets/img/image25.png)
 
 ```javascript
       var bar = new DxChartBar({
@@ -697,117 +705,159 @@ height="2.5411187664041996in"}
 있습니다. title, X축라벨, Y축라벨 등 모든 텍스트 값들을 제어할 수
 있습니다.
 
-![일렉트릭 블루, 스크린샷, 다채로움, 블루이(가) 표시된 사진 자동 생성된
-설명](media/image26.png){width="6.929166666666666in"
-height="3.5569444444444445in"}
+![Text](../assets/img/image26.png)
+
+```javascript
 
 var bar = new DxChartBar({
 
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
-
-text: {
-
-Color:\'Blue\', // text 색상을 설정할수 있습니다. 위의 예제에선 Y축 라벨
-색상입니다.
-
-FontStyle: \'20px bold Pretendard\' // Text FontStyle을 설정할 수
-있습니다.
-
+    text: {
+    Color:'Blue', // text 색상을 설정할수 있습니다. 위의 예제에선 Y축 라벨색상입니다.
+    FontStyle: '20px bold Pretendard' // Text FontStyle을 설정할 수 있습니다.
+    }
 }
-
-}
-
 }).draw();
+```
 
 ### 제목 (옵션 -- title 그룹)
 
-![텍스트, 도표, 그래프, 스크린샷이(가) 표시된 사진 자동 생성된
-설명](media/image27.png){width="6.309278215223097in"
-height="2.9430555555555555in"}
+![Title](../assets/img/image27.png)
 
-  -----------------------------------------------------------------------
-  Sub property        설명                           타입      기본값
-  ------------------- ------------------------------ --------- ----------
-  Color               제목의 색을 지정합니다.        object    null
+<style>
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: auto; /* 테이블을 가운데 정렬 */
+    }
+    th, td {
+        border: 1px solid black;
+        text-align: center; /* 텍스트를 가운데 정렬 */
+        padding: 10px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
 
-  FontStyle           제목의 글꼴 스타일을           string    null
-                      지정합니다.                              
+<table>
+    <tr>
+        <th>Sub property</th>
+        <th>설명</th>
+        <th>타입</th>
+        <th>기본값</th>
+    </tr>
+    <tr>
+        <td>Color</td>
+        <td>제목의 색을 지정합니다.</td>
+        <td>object</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>FontStyle</td>
+        <td>제목의 글꼴 스타일을 지정합니다.</td>
+        <td>string</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>Halign</td>
+        <td>제목의 가로 정렬을 지정합니다. left, right, center를 사용할 수 있습니다.</td>
+        <td>object</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>OffsetX</td>
+        <td>제목의 가로 오프셋을 지정합니다.</td>
+        <td>number</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>OffsetY</td>
+        <td>제목의 세로 오프셋을 지정합니다.</td>
+        <td>number</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Subtitle</td>
+        <td>차트의 부제목을 지정합니다. 제목 바로 아래에 생기기 때문에 마진을 주지 않으면 제목이 제대로 보이지 않을 수 있습니다.</td>
+        <td>string</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SubtitleColor</td>
+        <td>부제목의 색을 지정합니다.</td>
+        <td>string</td>
+        <td>#aaa</td>
+    </tr>
+    <tr>
+        <td>SubtitleFontStyle</td>
+        <td>부제목의 글꼴 스타일을 지정합니다.</td>
+        <td>string</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>SubtitleOffsetX</td>
+        <td>부제목의 가로 오프셋을 지정합니다.</td>
+        <td>number</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>SubtitleOffsetY</td>
+        <td>부제목의 세로 오프셋을 지정합니다.</td>
+        <td>number</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Text</td>
+        <td>중앙 상단의 제목을 지정합니다.</td>
+        <td>string</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Valign</td>
+        <td>제목의 세로 정렬을 지정합니다. top, bottom, center를 사용할 수 있습니다.</td>
+        <td>object</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>X</td>
+        <td>제목의 가로 좌표를 지정합니다.</td>
+        <td>object</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>Y</td>
+        <td>제목의 세로 좌표를 지정합니다.</td>
+        <td>object</td>
+        <td>null</td>
+    </tr>
+</table>
 
-  Halign              제목의 가로 정렬을 지정합니다. object    null
-                      left, right, center 를 사용할            
-                      수 있습니다.                             
 
-  OffsetX             제목의 가로 오프셋을           number    0
-                      지정합니다.                              
 
-  OffsetY             제목의 세로 오프셋을           number    0
-                      지정합니다.                              
+#### Title Property 예제
+![Title](../assets/img/image28.png)
 
-  Subtitle            차트의 부제목을 지정합니다.    string    
-                      제목 바로 아래에 생기기 때문에           
-                      마진을 주지 않으면 제목이                
-                      제대로 보이지 않을 수                    
-                      있습니다.                                
-
-  SubtitleColor       부제목의 색을 지정합니다.      string    #aaa
-
-  SubtitleFontStyle   부제목의 글꼴 스타일을         string    null
-                      지정합니다.                              
-
-  SubtitleOffsetX     부제목의 가로 오프셋을         number    0
-                      지정합니다.                              
-
-  SubtitleOffsetY     부제목의 세로 오프셋을         number    0
-                      지정합니다.                              
-
-  Text                중앙 상단의 제목을 지정합니다. string    
-
-  Valign              제목의 세로 정렬을 지정합니다. object    null
-                      top, bottom, center를 사용할             
-                      수 있습니다.                             
-
-  X                   제목의 가로 좌표를 지정합니다. object    null
-
-  Y                   제목의 세로 좌표를 지정합니다. object    null
-  -----------------------------------------------------------------------
-
-#### Title Property 예제![라인, 도표, 스크린샷, 그래프이(가) 표시된 사진 자동 생성된 설명](media/image28.png){width="7.579166666666667in" height="3.651388888888889in"}
-
-var bar = new DxChartBar({
-
-id: cvs,
-
-elem : canvas,
-
-binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
-options: {
-
-title: { Text : \'DxChart 튜토리얼\', // 차트의 title Text값을
-설정합니다.
-
-FontStyle: \'32px bold Pretendard\', // title FontStyle을 설정할 수
-있습니다.
-
-Y :73 // 차트 내 title의 Y 위치값을 설정 할수 있습니다.
-
-X: 450 // 차트 내 title의 X 위치값을 설정 할수 있습니다.
-
-},
-
-}
-
-}).draw();
+```javascript
+    var bar = new DxChartBar({
+    id: cvs,
+    elem : canvas,
+    binddataset : this.Dataset00,
+    data:["bind:total","bind:man","bind:woman"],
+    options: {
+    title: { 
+      Text : 'DxChart 튜토리얼', // 차트의 title Text값을설정합니다.
+      FontStyle: '32px bold Pretendard', // title FontStyle을 설정할 수 있습니다.
+      Y :73, // 차트 내 title의 Y 위치값을 설정 할수 있습니다.
+      X: 450 // 차트 내 title의 X 위치값을 설정 할수 있습니다.
+      },
+    }
+    }).draw();
+```
 
 ### 제목(옵션 -Subtitle)
 
@@ -816,233 +866,312 @@ title Properties내에 Subtitle
 
 옵션값으로 설정 할 수 있습니다.
 
-  -----------------------------------------------------------------------
-  Sub property        설명                           타입      기본값
-  ------------------- ------------------------------ --------- ----------
-  Subtitle            차트의 부제목을 지정합니다.    string    
-                      제목 바로 아래에 생기기 때문에           
-                      마진을 주지 않으면 제목이                
-                      제대로 보이지 않을 수                    
-                      있습니다.                                
+<table text-align="center"  cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Sub property</th>
+    <th>설명</th>
+    <th>타입</th>
+    <th>기본값</th>
+  </tr>
+  <tr>
+    <td>Subtitle</td>
+    <td>차트의 부제목을 지정합니다.<br>제목 바로 아래에 생기기 때문에 마진을 주지 않으면 제목이 제대로 보이지 않을 수 있습니다.</td>
+    <td>string</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>SubtitleColor</td>
+    <td>부제목의 색을 지정합니다.</td>
+    <td>string</td>
+    <td>#aaa</td>
+  </tr>
+  <tr>
+    <td>SubtitleFontStyle</td>
+    <td>부제목의 글꼴 스타일을 지정합니다.</td>
+    <td>string</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>SubtitleOffsetX</td>
+    <td>부제목의 가로 오프셋을 지정합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>SubtitleOffsetY</td>
+    <td>부제목의 세로 오프셋을 지정합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+</table>
 
-  SubtitleColor       부제목의 색을 지정합니다.      string    #aaa
+#### SubTitle Property 예제 
 
-  SubtitleFontStyle   부제목의 글꼴 스타일을         string    null
-                      지정합니다.                              
+![Subtitle](../assets/img/image29.png)
 
-  SubtitleOffsetX     부제목의 가로 오프셋을         number    0
-                      지정합니다.                              
-
-  SubtitleOffsetY     부제목의 세로 오프셋을         number    0
-                      지정합니다.                              
-  -----------------------------------------------------------------------
-
-#### SubTitle Property 예제 ![라인, 도표, 그래프, 스크린샷이(가) 표시된 사진 자동 생성된 설명](media/image29.png){width="7.579166666666667in" height="3.5965277777777778in"}
-
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
-
-title: { Text : \'DxChart 튜토리얼\', // 차트의 title Text값을
-설정합니다.
-
-Subtitle: \'차트 제목 만들기\', // 차트의 부제목을 설정할 수있습니다.
-
-SubtitleFontStyle : \'24px Pretendard\' // 차트 부제목의 폰트 스타일을
-설정 할 수 있습니다.
-
-// SubtitleOffsetY: 103 // 차트 부제목의 Offset Y 좌표 위치를 설정 할 수
-있습니다. X 좌표 위치값 변
-
-경도 가능합니다.
-
-},
-
+      title: {
+         Text : 'DxChart 튜토리얼', // 차트의 title Text값을설정합니다.
+        Subtitle: '차트 제목 만들기', // 차트의 부제목을 설정할 수있습니다.
+         SubtitleFontStyle : '24px Pretendard' // 차트 부제목의 폰트스타일을 설정 할 수 있습니다.
+        // SubtitleOffsetY: 103 // 차트 부제목의 Offset Y 좌표 위치를 설정 할 수있습니다. X 좌표 위치값 변경도 가능합니다.
+      },
 }
-
 }).draw();
+```
 
 ### X축 (옵션 - xaxis 그룹)
 
 차트의 X축에 대한 설정을 하는 Property입니다.
 
-![](media/image30.png){width="6.04123687664042in"
-height="2.6972222222222224in"}
+![Xaixs](../assets/img/image30.png)
 
-![텍스트, 스크린샷, 폰트, 라인이(가) 표시된 사진 자동 생성된
-설명](media/image31.png){width="5.577319553805775in"
-height="1.1930555555555555in"}
+![Xaixs2](../assets/img/image31.png)
 
-  --------------------------------------------------------------------------------
-  Sub property               설명                              타입      기본값
-  -------------------------- --------------------------------- --------- ---------
-  AddLineSize                x축 선의 길이를 지정합니다.       number    0
-                             양수이면 원점에서 왼쪽으로 x축              
-                             길이가 늘어나며 음수이면 원점에서           
-                             오른쪽으로 x축 길이가 줄어듭니다.           
+<table text-align="center"  border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Sub property</th>
+    <th>설명</th>
+    <th>타입</th>
+    <th>기본값</th>
+  </tr>
+  <tr>
+    <td>AddLineSize</td>
+    <td>x축 선의 길이를 지정합니다.<br>양수이면 원점에서 왼쪽으로 x축 길이가 늘어나며 음수이면 원점에서 오른쪽으로 x축 길이가 줄어듭니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Color</td>
+    <td>x축 선의 색을 지정합니다.</td>
+    <td>string</td>
+    <td>black</td>
+  </tr>
+  <tr>
+    <td>Labels</td>
+    <td>x축에서 사용할 라벨을 지정합니다.<br>라벨은 html 태그 형식 또는 배열 형태로 사용할 수 있습니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>LabelsAngle</td>
+    <td>x축 라벨의 각도를 지정합니다.<br>양수일 때 지정한 각도만큼 왼쪽으로 회전하며 음수일 때 오른쪽으로 회전합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>LabelsColor</td>
+    <td>x축 라벨의 색을 지정합니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>LabelsFontStyle</td>
+    <td>x축 라벨의 글꼴 스타일을 지정합니다.</td>
+    <td>string</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>LabelsFormattedDecimals</td>
+    <td>x축에서 %{value_formatted}처럼 형식이 지정된 라벨에서 지정한 값만큼의 소수점을 표시합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>LabelsFormattedPoint</td>
+    <td>x축에서 %{value_formatted}처럼 형식이 지정된 라벨에서 소수점 표시 방식을 지정합니다.</td>
+    <td>string</td>
+    <td>.</td>
+  </tr>
+  <tr>
+    <td>LabelsFormattedThousand</td>
+    <td>x축에서 %{value_formatted}처럼 형식이 지정된 라벨에서 천 단위 구분 기호를 지정합니다.</td>
+    <td>string</td>
+    <td>,</td>
+  </tr>
+  <tr>
+    <td>LabelsFormattedUnitsPost</td>
+    <td>x축에서 %{value_formatted}처럼 형식이 지정된 라벨에서 뒤에 표시할 문자를 지정합니다.</td>
+    <td>string</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>LabelsFormattedUnitsPre</td>
+    <td>x축에서 %{value_formatted}처럼 형식이 지정된 라벨에서 앞에 표시할 문자를 지정합니다.</td>
+    <td>string</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>LabelsHalign</td>
+    <td>x축 라벨의 가로 정렬을 지정합니다. left, right, center를 사용할 수 있습니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>LabelsOffsetX</td>
+    <td>x축 라벨의 가로 오프셋을 지정합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>LabelsOffsetY</td>
+    <td>x축 라벨의 세로 오프셋을 지정합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>LabelsPosition</td>
+    <td>x축 라벨의 포지션을 지정합니다. section, edge를 사용할 수 있습니다. section은 영역쪽에 라벨이 위치하고 edge는 데이터 포인트 점에 라벨이 위치합니다.</td>
+    <td>string</td>
+    <td>section</td>
+  </tr>
+  <tr>
+    <td>LabelsValign</td>
+    <td>라벨의 세로 정렬을 지정합니다. top, bottom, center를 사용할 수 있습니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>Linewidth</td>
+    <td>x축의 두께를 지정합니다.</td>
+    <td>number</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>Position</td>
+    <td>x축의 위치를 지정합니다. top, bottom, center를 사용할 수 있습니다.</td>
+    <td>string</td>
+    <td>bottom</td>
+  </tr>
+  <tr>
+    <td>Tickmarks</td>
+    <td>x축 라벨에 눈금을 표시할 지 여부입니다.</td>
+    <td>boolean</td>
+    <td>true</td>
+  </tr>
+  <tr>
+    <td>TickmarksCount</td>
+    <td>x축 라벨의 눈금 개수를 지정합니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>TickmarksLastLeft</td>
+    <td>x축 라벨의 가장 왼쪽 마크를 표시할 지 여부입니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>TickmarksLastRight</td>
+    <td>x축 라벨의 가장 오른쪽 마크를 표시할 지 여부입니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>TickmarksLength</td>
+    <td>x축 라벨의 데이터마다 위치한 마크값의 길이를 지정합니다.</td>
+    <td>number</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Title</td>
+    <td>x축의 제목을 지정합니다.</td>
+    <td>string</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>TitleColor</td>
+    <td>x축 제목의 색상을 지정합니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>TitleFontStyle</td>
+    <td>x축 제목의 글꼴 스타일을 지정합니다.</td>
+    <td>string</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>TitleHalign</td>
+    <td>x축 제목의 가로 정렬을 지정합니다. 'left', 'right', 'center'를 사용할 수 있습니다.</td>
+    <td>string</td>
+    <td>center</td>
+  </tr>
+  <tr>
+    <td>TitleOffsetX</td>
+    <td>x축 제목의 가로 오프셋을 지정합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>TitleOffsetY</td>
+    <td>x축 제목의 세로 오프셋을 지정합니다.</td>
+    <td>number</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>TitlePos</td>
+    <td>x축 제목의 위치를 지정합니다. 양수일 때 아래로 내려가고 음수일 때 위로 올라갑니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>TitleValign</td>
+    <td>x축 제목의 수직 정렬을 지정합니다. top, bottom, center를 사용할 수 있습니다.</td>
+    <td>string</td>
+    <td>top</td>
+  </tr>
+  <tr>
+    <td>TitleX</td>
+    <td>x축 제목의 가로 좌표를 지정합니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>TitleY</td>
+    <td>x축 제목의 세로 좌표를 지정합니다.</td>
+    <td>object</td>
+    <td>null</td>
+  </tr>
+  <tr>
+    <td>Use</td>
+    <td>x축을 사용할 지 여부입니다.</td>
+    <td>boolean</td>
+    <td>true</td>
+  </tr>
+</table>
 
-  Color                      x축 선의 색을 지정합니다.         string    black
 
-  Labels                     x축에서 사용할 라벨을 지정합니다. object    null
-                             라벨은 html 태그 형식 또는 배열             
-                             형태로 사용할 수 있습니다.                  
+#### X축 Property 기본 예제
 
-  LabelsAngle                x축 라벨의 각도를 지정합니다.     number    0
-                             양수일 때 지정한 각도만큼                   
-                             왼쪽으로 회전하며 음수일 때                 
-                             오른쪽으로 회전합니다.                      
+![Xaxis](../assets/img/image32.png)
 
-  LabelsColor                x축 라벨의 색을 지정합니다.       object    null
 
-  LabelsFontStyle            x축 라벨의 글꼴 스타일을          string    null
-                             지정합니다.                                 
-
-  LabelsFormattedDecimals    x축에서 %{value_formatted}처럼    number    0
-                             형식이 지정된 라벨에서 지정한               
-                             값만큼의 소수점을 표시합니다.               
-
-  LabelsFormattedPoint       x축에서 %{value_formatted}처럼    string    .
-                             형식이 지정된 라벨에서 소수점               
-                             표시 방식을 지정합니다.                     
-
-  LabelsFormattedThousand    x축에서 %{value_formatted}처럼    string    ,
-                             형식이 지정된 라벨에서 천 단위              
-                             구분 기호를 지정합니다.                     
-
-  LabelsFormattedUnitsPost   x축에서 %{value_formatted}처럼    string    
-                             형식이 지정된 라벨에서 뒤에                 
-                             표시할 문자를 지정합니다.                   
-
-  LabelsFormattedUnitsPre    x축에서 %{value_formatted}처럼    string    
-                             형식이 지정된 라벨에서 앞에                 
-                             표시할 문자를 지정합니다.                   
-
-  LabelsHalign               x축 라벨의 가로 정렬을            object    null
-                             지정합니다. left, right, center를           
-                             사용할 수 있습니다.                         
-
-  LabelsOffsetX              x축 라벨의 가로 오프셋을          number    0
-                             지정합니다.                                 
-
-  LabelsOffsetY              x축 라벨의 세로 오프셋을          number    0
-                             지정합니다.                                 
-
-  LabelsPosition             x축 라벨의 포지션을 지정합니다.   string    section
-                             section, edge를 사용할 수                   
-                             있습니다. section은 영역쪽에                
-                             라벨이 위치하고 edge는 데이터               
-                             포인트 점에 라벨이 위치합니다.              
-
-  LabelsValign               라벨의 세로 정렬을 지정합니다.    object    null
-                             top, bottom, center를 사용할 수             
-                             있습니다.                                   
-
-  Linewidth                  x축의 두께를 지정합니다.          number    1
-
-  Position                   x축의 위치를 지정합니다. top,     string    bottom
-                             bottom, center를 사용할 수                  
-                             있습니다.                                   
-
-  Tickmarks                  x축 라벨에 눈금을 표시할 지       boolean   true
-                             여부입니다.                                 
-
-  TickmarksCount             x축 라벨의 눈금 개수를            object    null
-                             지정합니다.                                 
-
-  TickmarksLastLeft          x축 라벨의 가장 왼쪽 마크를       object    null
-                             표시할 지 여부입니다.                       
-
-  TickmarksLastRight         x축 라벨의 가장 오른쪽 마크를     object    null
-                             표시할 지 여부입니다.                       
-
-  TickmarksLength            x축 라벨의 데이터마다 위치한      number    
-                             마크값의 길이를 지정합니다.                 
-
-  Title                      x축의 제목을 지정합니다.          string    
-
-  TitleColor                 x축 제목의 색상을 지정합니다.     object    null
-
-  TitleFontStyle             x축 제목의 글꼴 스타일을          string    null
-                             지정합니다.                                 
-
-  TitleHalign                x축 제목의 가로 정렬을            string    center
-                             지정합니다.                                 
-                             \'left\',\'right\',\'center\'를             
-                             사용할 수 있습니다.                         
-
-  TitleOffsetX               x축 제목의 가로 오프셋을          number    0
-                             지정합니다.                                 
-
-  TitleOffsetY               x축 제목의 세로 오프셋을          number    0
-                             지정합니다.                                 
-
-  TitlePos                   x축 제목의 위치를 지정합니다.     object    null
-                             양수일 때 아래로 내려가고 음수일            
-                             때 위로 올라갑니다.                         
-
-  TitleValign                x축 제목의 수직 정렬을            string    top
-                             지정합니다. top, bottom, center를           
-                             사용할 수 있습니다.                         
-
-  TitleX                     x축 제목의 가로 좌표를            object    null
-                             지정합니다.                                 
-
-  TitleY                     x축 제목의 세로 좌표를            object    null
-                             지정합니다.                                 
-
-  Use                        x축을 사용할 지 여부입니다.       boolean   true
-  --------------------------------------------------------------------------------
-
-#### ![스크린샷, 직사각형, 라인, 다채로움이(가) 표시된 사진 자동 생성된 설명](media/image32.png){width="7.579166666666667in" height="3.8965277777777776in"}X축 Property 기본 예제
-
+```javascript
 var bar = new DxChartBar({
 
-id: cvs,
-
-elem : canvas,
-
-binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
-options: {
-
-xaxis: {
-
-Use : false, // 차트의 X축을 Draw 할지 설정할 수 있습니다.
-
-Labels: \[\"bind:indecators\"\], // X축 라벨의 데이터 값을 설 정할 수
-있습니다.
-
-주로 Nexacro 내 Dataset 바인딩을 통해 데이터 값을 설정 합니다.
-
-Nexacro가 아닌 다른 프레임워크나 실행환경에선 배열값으로 설정할수
-있습니다.\
-ex) Lables :\['1','2','3','4','5'\]
-
-AddLineSize : 10, // X축 선의 길이 값을 설정 할 수 있습니다. }
-
-Color : \'red\', // X축의 색상을 설정 할 수 있습니다.
-
-Position: \'bottom\' // X축의 위치를 설정 할 수 있습니다. 기본값은
-bottom이며,\
-top, bottom 두가지 값으로 설정 할 수 있습니다.
-
-X축의 Position을 top으로 설정 할 시 차트가 상하반전이 되어 렌더링됩니다.
-
-}
-
-}
-
-}).draw();
+    id: cvs,
+    elem : canvas,
+    binddataset : this.Dataset00,
+    data:["bind:total","bind:man","bind:woman"],
+    options: {
+        xaxis: {
+          Use : false, // 차트의 X축을 Draw 할지 설정할 수 있습니다.
+          Labels: ["bind:indecators"], // X축 라벨의 데이터 값을 설 정할 수있습니다. 주로 Nexacro 내 Dataset 바인딩을 통해 데이터 값을 설정 합니다. Nexacro가 아닌 다른 프레임워크나 실행환경에선 배열값으로 설정할수있습니다.
+     //   ex) Lables :\['1','2','3','4','5'\]
+          AddLineSize : 10, // X축 선의 길이 값을 설정 할 수 있습니다. }
+          Color : 'red', // X축의 색상을 설정 할 수 있습니다.
+          Position: 'bottom' // X축의 위치를 설정 할 수 있습니다. 기본값은bottom이며,top, bottom 두가지 값으로 설정 할 수 있습니다.X축의 Position을 top으로 설정 할 시 차트가 상하반전이 되어 렌더링됩니다.        
+      }
+    }
+  }).draw();
+  ```
 
 #### ![스크린샷, 텍스트, 직사각형, 사각형이(가) 표시된 사진 자동 생성된 설명](media/image33.png){width="7.579166666666667in" height="3.392361111111111in"}X축 Labels 기본 예제
 
