@@ -1,21 +1,3 @@
-<style>
-    table {
-        border-collapse: collapse;
-        width: 80%;
-        margin: auto; /* 테이블을 가운데 정렬 */
-    }
-    th, td {
-        border: 1px solid black;
-        text-align: center; /* 텍스트를 가운데 정렬 */
-        padding: 10px;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-</style>
-
-
-
 
 > **DXChart 개발자 튜토리얼**
 >
@@ -307,23 +289,34 @@
         data:["bind:total","bind:man","bind:woman"],
         options: {
               colors: ['#FF6A8E','#42B0FF','#5DCA63'],
-              title: { Text : '1인 가구 수', FontStyle: 'bold 12px Tahoma' },
-                    xaxis: { Use : true, Labels: labels },
-            yaxis: { Use : true,
+              title: { 
+                    Text : '1인 가구 수', 
+                    FontStyle: 'bold 12px Tahoma' 
+              },
+              xaxis: { 
+                    Use : true, 
+                    Labels: labels 
+              },
+              yaxis: { 
+                    Use : true,
                     LabelsCount: 5,
-              ScaleMax: 10000000,
-              TickmarksCount: 10,
+                    ScaleMax: 10000000,
+                     TickmarksCount: 10,
               },
-            margin: { Left: 100, Bottom: 50, Inner : 20 },
+            margin: { 
+                    Left: 100, 
+                    Bottom: 50, 
+                    Inner : 20 
+              },
             tooltips: {
-              Data : '%{key}',
-              FormattedUnitsPost: '명',
-              Effect : 'fade',
-              Pointer : true,
-              Css: {
-                fontSize: '14pt'
-              },
-              FormattedKeyLabels: ['종합','남자','여자'],
+                    Data : '%{key}',
+                    FormattedUnitsPost: '명',
+                    Effect : 'fade',
+                    Pointer : true,
+                    Css: {
+                      fontSize: '14pt'
+                    },
+                    FormattedKeyLabels: ['종합','남자','여자'],
             }
           }
         }).wave();
