@@ -12,14 +12,44 @@
 
  [**2.** **DxChart 속성**](#DxChart-속성)
    - [Margin (옵션 - margin 그룹)](#margin-옵션---margin-그룹)
-   - [X축 (옵션 - xaxis 그룹)](#text-property-예제)
-   - [Y축 (옵션 - yaxis 그룹)](#y축-옵션-yaxis-그룹)
-   - [배경 (옵션 - background 그룹)](#\_Toc162962562)
+   - [Margin Property 예제](#margin-사용-예제)
+   - [Text Property 예제](#text-property-예제)
    - [제목 (옵션 - title 그룹)](#제목-옵션-title-그룹)
-   - [범례](#_Toc162962564)
-   - [툴팁](#_Toc162962565)
-   - [라벨 (옵션 - labels 그룹)](#\_Toc162962566)
-   - [그외](#_Toc162962570)
+   - [X축 (옵션 - xaxis 그룹)](#x축-옵션-xaxis-그룹)
+   - [Y축 (옵션 - yaxis 그룹)](#y축-옵션-yaxis-그룹)
+   - [Background 설정하기](#background-설정하기)
+   - [Label 설정하기](#label-설정하기)
+   - [범례](#범례-설정하기)
+   - [툴팁](#툴팁-설정하기)
+  
+
+[**3.** **Effect 설정하기**](#effect-설정하기)
+
+   - [Draw](#draw)
+   - [drawAni](#drawani)
+   - [wave](#wave)
+   - [grow](#grow)
+   - [trace](#trace)
+   - [unfold](#unfold-tobottom)
+   - [unfoldFromCenterTrace (fromCenter)](#unfoldfromcentertrace-fromcenter)
+   - [foldtocenter (toCenter)](#foldtocenter-tocenter)
+   - [implode](#implode)
+   - [explode](#explode)
+   - [차트 별 Effect 종류](#_Toc169105309)
+
+
+
+[**4.** **Multi Chart 생성하기**](#multi-chart-생성하기)
+
+   - [Bar 및 Line 차트](#bar-및-line-차트)
+
+   - [ Bar 및 Pie 차트](#bar-및-pie-차트)
+
+[**5.** **기타기능** ](#기타기능)
+
+   - [ConvertDataset](#convertdataset)
+
+   - [datachangeevent](#datachangeevent)   
 
 
 
@@ -135,25 +165,10 @@ options: {
 }).draw();
 ```
 
-### 제목 (옵션- title 그룹)
+### 제목 (옵션 title 그룹)
 
 ![Title](../../assets/img/image27.png)
 
-<style>
-    table {
-        border-collapse: collapse;
-        width: 80%;
-        margin: auto; /* 테이블을 가운데 정렬 */
-    }
-    th, td {
-        border: 1px solid black;
-        text-align: center; /* 텍스트를 가운데 정렬 */
-        padding: 10px;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-</style>
 
 <table>
     <tr>
@@ -337,7 +352,7 @@ options: {
 }).draw();
 ```
 
-### X축 (옵션 - xaxis 그룹)
+### X축 (옵션 xaxis 그룹)
 
 차트의 X축에 대한 설정을 하는 Property입니다.
 
@@ -584,73 +599,61 @@ var bar = new DxChartBar({
   }).draw();
   ```
 
-#### ![스크린샷, 텍스트, 직사각형, 사각형이(가) 표시된 사진 자동 생성된 설명](media/image33.png){width="7.579166666666667in" height="3.392361111111111in"}X축 Labels 기본 예제
+#### X축 Labels 기본 예제
+![Xaxis Labels](../../assets/img/image33.png)
 
+
+```javascript
 var bar = new DxChartBar({
+    id: cvs,
+    elem: canvas,
+    binddataset: this.Dataset00,
+    data: ["bind:total", "bind:man", "bind:woman"],
+    options: {
+        // Labels formatted 사용을 위해 names 프로퍼티 선언 후, 데이터셋 바인딩을 해줍니다.
+        // 프로퍼티 이름은 자유롭게 사용 가능합니다.
+        names: DxChart.convertDataset(this.Dataset00, ['bind:year']),
+        xaxis: {
+            Use: true, // X축을 사용할 지 여부를 설정합니다.
+          // Labels formatted 기능을 사용하기 위해 글로벌 내장 함수 사용을 합니다.
+          // Labels formatted 기능을 제외할 시, 
+          //기존과 동일하게 dataset 바인딩이나 배열 데이터로 선언합니다.
+           
+           // X축 Labels 형식을 설정합니다.
+           Labels: '%{property:names[%{index}]} (%{value_formatted})', 
+          // 차트의 X축 선의 두께 값을 설정합니다.
+            LineWidth: 5,
+          // 차트의 X축 Labels의 각도를 설정합니다. 양수, 음수 모두 가능합니다. 
+            LabelsAngle: 5, 
+          // 차트의 X축 Labels의 색상을 설정합니다.
+            LabelsColor: 'blue',
+          // X축 Labels의 가로 오프셋 값을 설정합니다.   
+            LabelsOffsetX: 0,
+          // X축 Labels의 세로 오프셋 값을 설정합니다.
+            LabelsOffsetY: 15,
+          // X축 Labels의 글꼴 스타일을 설정합니다.   
+            LabelsFontStyle: '24px bold Pretendard',
+          // X축 Labels에서 표시되는 소수점 수를 설정합니다. 
+            LabelsFormattedDecimals: 1, 
+          // X축 Labels에서 표시되는 소수점 문자를 설정합니다.  
+            LabelsFormattedPoint: ".",
+          // X축 Labels에서 표시되는 천 단위 구분점을 설정합니다.   
+            LabelsFormattedThousand: ",",
+          // X축 Labels 뒤에 오는 구분 문자를 설정합니다.   
+            LabelsFormattedUnitsPost: " μg/m³", 
+          // X축 Labels 앞에 오는 구분 문자를 설정합니다.  
+            LabelsFormattedUnitsPre: "$", 
+          // X축 Labels의 가로 정렬 방향을 설정합니다. (left, right, center)  
+            LabelsHalign: 'center',
+          // X축 Labels의 세로 오프셋 값을 설정합니다.   
+            LabelsOffsetY: 0,
+           // X축 Labels의 위치를 설정합니다. (section, edge)   
+            LabelsPosition: 'section',
+        }
+    }
+}).draw();
 
-id: cvs,
-
-elem : canvas,
-
-binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
-options: {
-
-names: DxChart.convertDataset(this.Dataset00,\[\'bind:year\'\]),
-
-// Labels formatted 사용을 위해 names프로퍼티 선언후, 데이터셋바인딩을
-해줍니다.
-
-// 프로퍼티 이름은 자유롭게 사용이 가능합니다.
-
-xaxis: { Use : true,
-
-Labels: \'%{property:names\[%{index}\]} (%{value_formatted})\',
-
-// 현재 예제에서는 Labels formatted 기능을 사용하기위해 글로벌 내장 함수
-사용을 합니다.
-
-// Labels formatted 기능을 제외할시, 기존과 동일하게 dataset바인딩이나,
-배열 데이터로 선언합니다.
-
-LineWidth : 5, // 차트의 X축 Line의 두께 값을 설정 할 수 있습니다..
-
-LabelsAngle : 5, // 차트의 X축 Labels의 각도를 설정 할 수 있습니다. 양수
-음수 모두 가능합니다.
-
-LabelsColor: \'blue\', // 차트의 X축 Labels의 색상을 설정할 수 있습니다.
-
-LabelsOffsetY:15, // 차트의 X축 OffsetY 좌표 값을 설정 할 수 있습니다.
-
-LabelsFontStyle: \'24px bold Pretendard\', // X축 Labels의 FonstStyle을
-설정할수 있습니다.
-
-LabelsFormattedDecimals : 1, // X축 Labels의 표시되는 소수점 수를 설정
-할 수 있습니다.
-
-LabelsFormattedPoint:\".\", // X축 Labels의 표시되는 소수점 문자를
-설정할 수 있습니다.
-
-LabelsFormattedThousand:\",\", //X축 Labels의 표시되는 천단위 구분점을
-설정할 수 있습니다.
-
-LabelsFormattedUnitsPost:\" μg/m³\", //X축 Labels 뒤에오는 구분문자를
-설정할 수 있습니다.
-
-LabelsFormattedUnitsPre:\"\$\", //X축 Labels 앞에오는 구분문자를 설정할
-수 있습니다.
-
-LabelsHalign : \'center\', //X축 Labels의 가로정렬 방향을 설정할수
-있습니다. (left,right,center).
-
-LabelsOffsetX : 0, //X축 Labels의 OffsetX 위치값을 설정할 수 있습니다.
-
-LabelsOffsetY : 0, //X축 Labels의 OffsetY 위치값을 설정할 수 있습니다.
-
-LabelsPosition :\'section\', //X축 Labels의 Position값을 설정할 수
-있습니다. (section, edge)
+```
 
 #### 추가 예제 xaxisLabelsFormatter
 
@@ -669,7 +672,7 @@ xaxisLabelsFormatter를 만들 때 사용할 수 있는 매크로는 다음과 �
 
 ### 속성 매크로
 
-%{property:myProperties\[%{index}\]}
+> %{property:myProperties\[%{index}\]}
 
 -   이 매크로는 템플릿 문자열에서 객체의 속성을 참조할 수 있게 해줍니다.
     예를 들어, 위의 이름 속성을 설정하고 템플릿 문자열에서 참조할 수
@@ -678,7 +681,7 @@ xaxisLabelsFormatter를 만들 때 사용할 수 있는 매크로는 다음과 �
 
 ### 값 매크로
 
-%{value}, %{value_formatted}
+> %{value}, %{value_formatted}
 
 -   인덱스와 속성 매크로가 라벨에 명시될 값을 선언한다면, 값 매크로는
     명시될 값 뒤에 Formate value를 설정할수 있습니다. 따라서
@@ -764,548 +767,2393 @@ Labels: %{property:myProperties\[%{index}\]} %{value_formatted} // 속성
 
 #### X축 Property 기본 예제( Tickmarks, Title 관련)
 
-![스크린샷, 라인, 도표, 직사각형이(가) 표시된 사진 자동 생성된
-설명](media/image34.png){width="7.579166666666667in"
-height="3.1958333333333333in"}
+![Xaxis Tickmarks](../../assets/img/image34.png)
 
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
+      xaxis: {   
+      Use : true,
+      Labels: ['bind:indecators'],
+    // X축 Labels에 눈금 사용 여부를 설정 할 수 있습니다.
+    // 기본값은 true입니다.
+      Tickmarks:true, 
+    // X축 Labels에 눈금 갯수를 설정 할 수 있습니다.
+      TickmarksCount:15, 
+    // X축 Labels에 마지막 왼쪽 눈금 사용 여부를 설정 할 수있습니다. 
+    //기본값은 null입니다.
+      TickmarksLastLeft:null, 
+    // X축 Labels에 마지막 오른쪽 눈금 사용 여부를 설정 할 수있습니다. 
+    //기본값은 null입니다.
+      TickmarksLastRight:null, 
+    // X축 Labels에 눈금의 길이를 설정할 수 있습니다.
+      TickmarksLength:10, 
+    // X축 Labels의 제목을 설정할 수 있습니다.
+      Title:'DxChart 튜토리얼', 
+    // X축 Labels 제목의 색상값을 설정 할 수 있습니다.
+      TitleColor: 'red', 
+    // X축 Labels 제목의 폰트스타일을 설정할 수 있습니다.
+      TitleFontStyle:'15px bold Pretendard', 
+    // X축 Labels에 제목의 가로정렬 값을 설정 할수있습니다. (left,right,center)
+      TitleHalign: 'cetner', 
+    // X축 Labels에 제목의 OffsetX 값을 설정 할수 있습니다.
+      TitleOffsetX: 5, 
+    // X축 Labels에 제목의 OffsetY 값을 설정 할수 있습니다.
+      TitleOffsetY:5, 
+    // X축 Labels에 제목의 위치를 지정합니다. 
+    //양수일 때 아래로 내려가고 음수일 때 위로 올 라갑니다.
+      TitlePos:10, 
+     // X축 Labels에 제목의 세로정렬 값을 설정 할수
+     // 있습니다. (top, bottom, center)
+      TitleValign: 'center',
+     // X축 Labels에 제목의 X좌표 값을 설정 할수 있습니다. 
+     //양수,음수 모두 설정 가능합니다
+      TitleX: 850, 
+     // X축 Labels에 제목의 Y좌표 값을 설정 할수 있습니다. 
+     // 양수, 음수 모두 설정 가능합니다
+      TitleY:790 
+    },
 
-xaxis: { Use : true,
-
-Labels: \[\'bind:indecators\'\],
-
-Tickmarks:true, // X축 Labels에 눈금 사용 여부를 설정 할 수 있습니다.
-기본값은 true입니다.
-
-TickmarksCount:15, // X축 Labels에 눈금 갯수를 설정 할 수 있습니다.
-
-TickmarksLastLeft:null, // X축 Labels에 눈금 사용 여부를 설정 할 수
-있습니다. 기본값은 true입니다.
-
-TickmarksLastRight:null, // X축 Labels에 눈금 사용 여부를 설정 할 수
-있습니다. 기본값은 true입니다.
-
-TickmarksLength:10, // X축 Labels에 눈금의 길이를 설정할 수 있습니다..
-
-Title:\'DxChart 튜토리얼\', // X축 Labels의 제목을 설정할 수 있습니다.
-
-TitleColor: \'red\', // X축 Labels 제목의 색상값을 설정 할 수 있습니다.
-
-TitleFontStyle:\'15px bold Pretendard\', // X축 Labels 제목의 폰트
-스타일을 설정할 수 있습니다.
-
-TitleHalign: \'cetner\', // X축 Labels에 제목의 가로정렬 값을 설정 할수
-있습니다. (left,right,center)
-
-TitleOffsetX: 5, // X축 Labels에 제목의 OffsetX 값을 설정 할수 있습니다.
-
-TitleOffsetY:5, // X축 Labels에 제목의 OffsetY 값을 설정 할수 있습니다.
-
-TitlePos:10, // X축 Labels에 제목의 위치를 지정합니다. 양수일 때 아래로
-내려가고 음수일 때 위로 올 라갑니다..
-
-TitleValign:\'center\', // X축 Labels에 제목의 세로정렬 값을 설정 할수
-있습니다. (top, bottom, center)
-
-TitleX: 850, // X축 Labels에 제목의 X좌표 값을 설정 할수 있습니다. 양수,
-음수 모두 설정 가능합니다
-
-TitleY:790 // X축 Labels에 제목의 Y좌표 값을 설정 할수 있습니다. 양수,
-음수 모두 설정 가능합니다
-
-},
-
-}
-
+  }
 }).draw();
+```
 
 ### Y축 (옵션 -- yaxis 그룹)
 
-![텍스트, 스크린샷, 도표, 그래프이(가) 표시된 사진 자동 생성된
-설명](media/image35.png){width="6.298968722659668in"
-height="2.9763888888888888in"}
+![Yaxis](../../assets/img/image35.png)
 
-![텍스트, 스크린샷, 폰트, 도표이(가) 표시된 사진 자동 생성된
-설명](media/image36.png){width="2.783505030621172in"
-height="2.264818460192476in"}
+![Yaxis2](../../assets/img/image36.png)
 
-  --------------------------------------------------------------------------
-  Sub property          설명                              타입      기본값
-  --------------------- --------------------------------- --------- --------
-  AddLineSize           y축 선의 길이를 지정합니다.       number    0
-                        양수이면 원점에서 왼쪽으로 y축              
-                        길이가 늘어나며 음수이면 원점에서           
-                        오른쪽으로 y축 길이가 줄어듭니다.           
+<table style="width: 100%; text-align: center; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding: 10px;">Sub property</th>
+      <th style="border: 1px solid black; padding: 10px;">설명</th>
+      <th style="border: 1px solid black; padding: 10px;">타입</th>
+      <th style="border: 1px solid black; padding: 10px;">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AddLineSize</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 선의 길이를 지정합니다. 양수이면 원점에서 왼쪽으로 y축 길이가 늘어나며 음수이면 원점에서 오른쪽으로 y축 길이가 줄어듭니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Color</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 선의 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">black</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsColor</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsCount</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 개수를 지정합니다. 라벨이 많아도 넘어도 지정한 만큼의 개수만 보여집니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">5</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsFontStyle</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 글꼴 스타일을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsHalign</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 가로 정렬을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsOffsetX</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 가로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsOffsetY</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 세로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsPosition</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 포지션을 지정합니다. section, edge가 차트 유형별로 적용되어 있으며 수정이 불가능한 차트도 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">edge</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsSpecific</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨 값을 특정한 값으로 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsValign</td>
+      <td style="border: 1px solid black; padding: 10px;">라벨의 세로 정렬을 지정합니다. top, bottom, center를 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LineWidth</td>
+      <td style="border: 1px solid black; padding: 10px;">y축의 두께를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Position</td>
+      <td style="border: 1px solid black; padding: 10px;">y축의 위치를 지정합니다. top, bottom, center를 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">left</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Scale</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 지 여부입니다. true면 데이터 값에 따라 y축에 라벨이 표현됩니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">true</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleDecimals</td>
+      <td style ="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 때, 지정한 값만큼의 소수점을 표시합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleFormatter</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨 규모의 데이터를 특정한 형식으로 변환하거나 서식을 적용합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleInvert</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨 규모를 반전시킬 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">false</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleMax</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 때, 라벨의 최대값을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleMin</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 때, 라벨의 최소값을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScalePoint</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 때, 소수점 표시 방식을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleRound</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 반올림할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">false</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleThousand</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 때, 천 단위 구분 기호를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">,</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleUnitsPost</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 때, 뒤에 표시할 문자를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ScaleUnitsPre</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 규모를 보여줄 때, 앞에 표시할 문자를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Tickmarks</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨에 눈금을 표시할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">true</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TickmarksCount</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 눈금 개수를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TickmarksLastBottom</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 가장 아래쪽 마크를 표시할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TickmarksLastTop</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 가장 위쪽 마크를 표시할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TickmarksLength</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 라벨의 데이터마다 위치한 마크값의 길이를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">3</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Title</td>
+      <td style="border: 1px solid black; padding: 10px;">y축의 제목을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleColor</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 색상을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleFontStyle</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 글꼴 스타일을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleHalign</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 가로 정렬을 지정합니다. 'left','right','center'를 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleOffsetX</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 가로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleOffsetY</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 세로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitlePos</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 위치를 지정합니다. 양수일 때 아래로 내려가고 음수일 때 위로 올라갑니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleValign</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 수직 정렬을 지정합니다. top, bottom, center를 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleX</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 가로 좌표를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">TitleY</td>
+      <td style="border: 1px solid black; padding: 10px;">y축 제목의 세로 좌표를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Use</td>
+      <td style="border: 1px solid black; padding: 10px;">y축을 사용할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">true</td>
+    </tr>
+  </tbody>
+</table>
 
-  Color                 y축 선의 색을 지정합니다.         string    black
 
-  LabelsColor           y축 라벨의 색을 지정합니다.       object    null
 
-  LabelsCount           y축 라벨의 개수를 지정합니다.     number    5
-                        라벨이 많아도 넘어도 지정한                 
-                        만큼의 개수만 보여집니다.                   
-
-  LabelsFontStyle       y축 라벨의 글꼴 스타일을          string    null
-                        지정합니다.                                 
-
-  LabelsHalign          y축 라벨의 가로 정렬을            object    null
-                        지정합니다. left, right, center를           
-                        사용할 수 있습니다.                         
-
-  LabelsOffsetX         y축 라벨의 가로 오프셋을          number    0
-                        지정합니다.                                 
-
-  LabelsOffsetY         y축 라벨의 세로 오프셋을          number    0
-                        지정합니다.                                 
-
-  LabelsPosition        y축 라벨의 포지션을 지정합니다.   string    edge
-                        section, edge가 차트 유형별로               
-                        적용되어 있으며 수정이 불가능한             
-                        차트도 있습니다.                            
-
-  LabelsSpecific        y축 라벨 값을 특정한 값으로       object    null
-                        지정합니다.                                 
-
-  LabelsValign          라벨의 세로 정렬을 지정합니다.    object    null
-                        top, bottom, center를 사용할 수             
-                        있습니다.                                   
-
-  LineWidth             y축의 두께를 지정합니다.          number    1
-
-  Position              y축의 위치를 지정합니다. top,     string    left
-                        bottom, center를 사용할 수                  
-                        있습니다.                                   
-
-  Scale                 y축 라벨의 규모를 보여줄 지       boolean   true
-                        여부입니다. true면 데이터 값에              
-                        따라 y축에 라벨이 표현됩니다.               
-
-  ScaleDecimals         y축 라벨의 규모를 보여줄 때,      number    0
-                        지정한 값만큼의 소수점을                    
-                        표시합니다.                                 
-
-  ScaleFormatter        y축 라벨 규모의 데이터를 특정한   object    null
-                        형식으로 변환하거나 서식을                  
-                        적용합니다.                                 
-
-  ScaleInvert           y축 라벨 규모를 반전시킬 지       boolean   false
-                        여부입니다.                                 
-
-  ScaleMax              y축 라벨의 규모를 보여줄 때,      object    null
-                        라벨의 최대값을 지정합니다.                 
-
-  ScaleMin              y축 라벨의 규모를 보여줄 때,      number    0
-                        라벨의 최소값을 지정합니다.                 
-
-  ScalePoint            y축 라벨의 규모를 보여줄 때,      string    .
-                        소수점 표시 방식을 지정합니다.              
-
-  ScaleRound            y축 라벨의 규모를 반올림할 지     boolean   false
-                        여부입니다.                                 
-
-  ScaleThousand         y축 라벨의 규모를 보여줄 때, 천   string    ,
-                        단위 구분 기호를 지정합니다.                
-
-  ScaleUnitsPost        y축 라벨의 규모를 보여줄 때, 뒤에 string    
-                        표시할 문자를 지정합니다.                   
-
-  ScaleUnitsPre         y축 라벨의 규모를 보여줄 때, 앞에 string    
-                        표시할 문자를 지정합니다.                   
-
-  Tickmarks             y축 라벨에 눈금을 표시할 지       boolean   true
-                        여부입니다.                                 
-
-  TickmarksCount        y축 라벨의 눈금 개수를            object    null
-                        지정합니다.                                 
-
-  TickmarksLastBottom   y축 라벨의 가장 아래쪽 마크를     object    null
-                        표시할 지 여부입니다.                       
-
-  TickmarksLastTop      y축 라벨의 가장 위쪽 마크를       object    null
-                        표시할 지 여부입니다.                       
-
-  TickmarksLength       y축 라벨의 데이터마다 위치한      number    3
-                        마크값의 길이를 지정합니다.                 
-
-  Title                 y축의 제목을 지정합니다.          string    
-
-  TitleColor            y축 제목의 색상을 지정합니다.     object    null
-
-  TitleFontStyle        y축 제목의 글꼴 스타일을          string    null
-                        지정합니다.                                 
-
-  TitleHalign           y축 제목의 가로 정렬을            object    null
-                        지정합니다.                                 
-                        \'left\',\'right\',\'center\'를             
-                        사용할 수 있습니다.                         
-
-  TitleOffsetX          y축 제목의 가로 오프셋을          number    0
-                        지정합니다.                                 
-
-  TitleOffsetY          y축 제목의 세로 오프셋을          number    0
-                        지정합니다.                                 
-
-  TitlePos              y축 제목의 위치를 지정합니다.     object    null
-                        양수일 때 아래로 내려가고 음수일            
-                        때 위로 올라갑니다.                         
-
-  TitleValign           y축 제목의 수직 정렬을            object    null
-                        지정합니다. top, bottom, center를           
-                        사용할 수 있습니다.                         
-
-  TitleX                y축 제목의 가로 좌표를            object    null
-                        지정합니다.                                 
-
-  TitleY                y축 제목의 세로 좌표를            object    null
-                        지정합니다.                                 
-
-  Use                   y축을 사용할 지 여부입니다.       boolean   true
-  --------------------------------------------------------------------------
 
 #### Y축 Property 기본 예제
 
-![스크린샷, 텍스트, 그래프, 도표이(가) 표시된 사진 자동 생성된
-설명](media/image37.png){width="7.772916666666666in"
-height="3.607638888888889in"} 다음 예제는 Basic한 차트의 Y축 생성
-예제입니다.
+다음 예제는 Basic한 차트의 Y축 생성예제입니다.
 
+![Yaxis](../../assets/img/image37.png)
+
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
-
-yaxis: {
-
-Use : true, // 차트의 Y축을 Draw 할지 설정할 수 있는 옵션입니다. 디폴트
-값은 true입니다.
-
-ScaleMax: 100, // 차트 Y축 라벨 데이터값의 MAX값을 설정할 수 있습니다.
-
-Tickmarks:false, // 차트 Y축의 눈금선 사용 여부를 설정할 수 있습니다.
-디퐅트값은 true입니다.
-
-TickmarksCount: 5, // 차트 Y축의 눈금선 개수 를 설정 할 수 있습니다.
-
-Color:\"#E2E2E2\", // 차트 Y축 라인의 색상을 설정 할 수 있습니다.
-
-LabelsOffsetX:-15, //차트의 Y축과 라벨 사이 OffsetX값을 설정할 수
-있습니다 양수 음수 둘다 가능합니다..
-
-}
-
-}
+        yaxis: {
+          // 차트의 Y축을 Draw 할지 설정할 수 있는 옵션입니다. 
+          // 디폴트 값은 true입니다.
+            Use : true, 
+          // 차트 Y축 라벨 데이터값의 MAX값을 설정할 수 있습니다. 
+            ScaleMax: 100, 
+            Tickmarks:false,
+          // 차트 Y축의 눈금선 개수 를 설정 할 수 있습니다.   
+            TickmarksCount: 5,
+          // 차트 Y축 선의 색상을 설정 할 수 있습니다.  
+            Color:"#E2E2E2",
+           //차트의 Y축과 라벨 사이 OffsetX값을 설정할 수 있습니다 
+           //양수 음수 둘다 가능합니다..  
+            LabelsOffsetX:-15, 
+        }
+      }
 
 }).draw();
+```
 
 #### Y축 Property 기본 예제 (Labels 관련 예제)
 
-![텍스트, 스크린샷, 라인, 그래프이(가) 표시된 사진 자동 생성된
-설명](media/image38.png){width="7.793055555555555in"
-height="3.4944444444444445in"} 다음은 차트의 Y축 라벨에 관련된 기본 예제
-입니다.
+ 다음은 차트의 Y축 라벨에 관련된 기본 예제 입니다.
+![YaxisLabels](../../assets/img/image38.png)
 
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
+        yaxis: {
+            Use : true, 
+            // 차트의 Y축을 Draw 할지 설정할 수 있는 옵션입니다. 
+            // 디폴트값은 true입니다.
+            // 차트 Y축의 눈금선 사용 여부를 설정할 수 있습니다.
+            // 디퐅트값은 true입니다.
+              Tickmarks:true,
+            // 차트 Y축의 눈금선 개수 를 설정 할 수 있습니다.   
+              TickmarksCount: 3,
+            // 차트 Y축 라인의 색상을 설정 할 수 있습니다.   
+              Color:"#E2E2E2",
+            // 차트 Y축 라벨 데이터 의 개수를 설정할 수 있습니다.
+            //  기본적으로 바인딩된 데이터 값들의 평균값이 라벨로 설정 됩니다.   
+              LabelsCount: 3,
+            // 차트 Y축 라벨 데이터의 폰트 스타일을 설정할 수 있습니다. 
+              LabelsFontStyle:'20px bold Pretendard', 
+            // 차트 Y축 라벨 데이터의 가로정렬을 설정할 수 있습니다.
+              LabelsHalign: 'center', 
+            //차트의 Y축과 라벨 사이 OffsetX값을 설정할 수 있습니다 
+            //양수 음수 둘다 가능합니다..
+              LabelsOffsetX:-35, 
+            //차트의 Y축과 라벨 사이 OffsetY값을 설정할 수 있습니다 
+            //양수 음수 둘다 가능합니다..
+              LabelsOffsetY: -15, 
+            //차트의 Y축 라벨 데이터의 포지션을 설정할 수 있습니다. 
+            //'section', 'edge'로 설정 가능합니다.
+              LabelsPosition: 'edge', 
 
-yaxis: {
-
-Use : true, // 차트의 Y축을 Draw 할지 설정할 수 있는 옵션입니다. 디폴트
-값은 true입니다.
-
-Tickmarks:true, // 차트 Y축의 눈금선 사용 여부를 설정할 수 있습니다.
-디퐅트값은 true입니다.
-
-TickmarksCount: 3, // 차트 Y축의 눈금선 개수 를 설정 할 수 있습니다.
-
-Color:\"#E2E2E2\", // 차트 Y축 라인의 색상을 설정 할 수 있습니다.
-
-LabelsCount: 3, // 차트 Y축 라벨 데이터 의 개수를 설정할 수 있습니다.
-기본적으로 바인딩된 데이터 값들의 평균값이 라벨로 설정 됩니다.
-
-LabelsFontStyle:\'20px bold Pretendard\', // 차트 Y축 라벨 데이터의 폰트
-스타일을 설정할 수 있습니다.
-
-LabelsHalign: \'center\', // 차트 Y축 라벨 데이터의 가로정렬을 설정할 수
-있습니다.
-
-LabelsOffsetX:-35, //차트의 Y축과 라벨 사이 OffsetX값을 설정할 수
-있습니다 양수 음수 둘다 가능합니다..
-
-LabelsOffsetY: -15, //차트의 Y축과 라벨 사이 OffsetY값을 설정할 수
-있습니다 양수 음수 둘다 가능합니다..
-
-LabelsPosition: \'edge\', //차트의 Y축 라벨 데이터의 포지션을 설정할 수
-있습니다. 'section', 'edge'로 설정 가능합니다.
-
-LabelsSpecific:\[\'High\',\'Medium\',\'Low\'\], // 차트의 Y축 라벨
-데이터를 바인딩된 데이터의 평균값이 아닌
-
-특정한 값으로 설정할 수있습니다. Array 형식으로 설정이 가능합니다.
-
-LabelsValign:\'left\', //차트의 Y축 라벨데이터의 세로정렬 값을 설정할
-수있습니다.
-
-LineWidth:3, // 차트의 Y축 색상을 설정 할 수 있습니다.
-
-Position:\'left\' // 차트의 Y축 포지션을 설정할 수 있습니다.
-
-LabelsColor:\'red\', //차트 Y축 라벨 데이터의 색상을 설정 할 수
-있습니다.
-
-}
-
-}
-
+            //차트의 Y축 라벨  데이터를 바인딩된 데이터의 평균값이 아닌
+            //특정한 값으로 설정할 수있습니다. Array 형식으로 설정이 가능합니다.
+              LabelsSpecific:['High','Medium','Low'], 
+            //차트의 Y축 라벨데이터의 세로정렬 값을 설정할 수있습니다.
+              LabelsValign:'left', 
+            // 트의 Y축 색상을 설정 할 수 있습니다.
+              LineWidth:3, 
+            // 차트의 Y축 포지션을 설정할 수 있습니다.
+              Position:'left' ,
+            //차트 Y축 라벨 데이터의 색상을 설정 할 수 있습니다.
+              LabelsColor:'red', 
+      }
+  }
 }).draw();
+```
 
 #### Y축 Property 기본 예제 (Scale 관련 예제)
 
-![스크린샷, 텍스트, 그래프, 도표이(가) 표시된 사진 자동 생성된
-설명](media/image39.png){width="7.782638888888889in"
-height="4.061111111111111in"}다음은 Y축 Scale에 관련된 기본 예제 입니다.
+다음은 Y축 Scale에 관련된 기본 예제 입니다.
 Scale Properties는 기본적으로 Y축 라벨데이터와 연관되어 있습니다. Scale
 설정에 따라서 차트의 데이터 값 표현이 달라질 수 있습니다.
 
+![YaxisScale](../../assets/img/image39.png)
+
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
-
-yaxis: {
-
-Use : true,
-
-Color:\"#E2E2E2\",
-
-LabelsOffsetX:-15, //y축과 label 사이 15px 설정
-
-Scale: true, //차트의 Y축 Scale값 표시 여부를 설정할 수 있습니다.
-
-ScaleRound: true, //차트의 Y축 Scale값을 반올림 표현을 할지 설정할 수
-있습니다.\
-예를들어 Scale의 최대값을 59로설정할시, 100으로 반올림하여 표현합니다.
-
-ScaleMax: 59, //차트의 Y축 Scale의 최대값을 설정할 수 있습니다. 설정값에
-따라 차트의 데이터 표현형태가 달라지므로, 차트의 형태도 달라질수
-있습니다.
-
-ScaleMin:10, , //차트의 Y축 Scale의 최솟값을 설정할 수 있습니다.
-설정값에 따라 차트의 데이터 표현형태가 달라지므로, 차트의 형태도
-달라질수 있습니다.
-
-ScaleUnitsPost: \'%\', //차트의 Y축 Scale 값 뒤에 문자를 설정 할 수
-있습니다.
-
-ScaleUnitsPre:\'\$\', //차트의 Y축 Scale 값 앞에 문자를 설정 할 수
-있습니다.
-
-ScaleDecimals: 2, //차트의 Y축 Scale 소수점 자릿 수를 설정 할 수
-있습니다..
-
-ScaleInvert:false, //차트의 Y축 Scale의 최대값과 최소값을 Invert하여
-표시할 수 있습니다.
-
-ScalePoint: \',,\', //차트의 Y축 Scale 값 소수점 구분점을 설정할 수
-있습니다.
-
-ScaleThousand:\'..\' //차트의 Y축 Scale 값 천단위 구분점을 설정할 수
-있습니다.
-
-}
-
-}
-
+        yaxis: {
+              Use : true,
+              Color:"#E2E2E2",
+              LabelsOffsetX:-15,
+              //차트의 Y축 Scale값 표시 여부를 설정할 수 있습니다.  
+              Scale: true,
+              //차트의 Y축 Scale값을 반올림 표현을 할지 설정할 수 있습니다.
+              // 예를들어 Scale의 최대값을 59로설정할시, 100으로 반올림하여 표현합니다.
+              ScaleRound: true,
+             //차트의 Y축 Scale의 최대값을 설정할 수 있습니다. 
+             //설정값에 따라 차트의데이터 표현형태가 달라지므로, 
+             //차트의 형태도 달라질수 있습니다.
+              ScaleMax: 59, 
+             //차트의 Y축 Scale의 최솟값을 설정할 수 있습니다.
+             //설정값에 따라 차트의 데이터 표현형태가 달라지므로, 
+             //차트의 형태도 달라질수 있습니다.
+              ScaleMin:10,
+             //차트의 Y축 Scale 값 뒤에 문자를 설정 할 수 있습니다.
+              ScaleUnitsPost: '%',
+             //차트의 Y축 Scale 값 앞에 문자를 설정 할 수 있습니다. 
+              ScaleUnitsPre:'$',
+             //차트의 Y축 Scale 소수점 자릿 수를 설정 할 수 있습니다. 
+              ScaleDecimals: 2,
+             //차트의 Y축 Scale의 최대값과 최소값을 Invert하여 표시할 수 있습니다.
+              ScaleInvert:false, 
+             //차트의 Y축 Scale 값 소수점 구분점을 설정할 수 있습니다. 
+              ScalePoint: ',,',
+             //차트의 Y축 Scale 값 천단위 구분점을 설정할 수 있습니다. 
+              ScaleThousand:'..' 
+          }
+        }
 }).draw();
+```
 
 #### Y축 Property ScaleFormatter예제 (Scale 관련 예제)
 
-![텍스트, 스크린샷, 도표, 그래프이(가) 표시된 사진 자동 생성된
-설명](media/image40.png){width="7.579166666666667in"
-height="6.047916666666667in"}ScaleFormatter는 Y축 Sclae 데이터 값을
-바인딩된 데이터값과 다르게 표현할수 있는 Properties 입니다.\
+ScaleFormatter는 Y축 Sclae 데이터 값을<br>
+바인딩된 데이터값과 다르게 표현할수 있는 Properties 입니다.<br>
 옵션 객체 안에서 함수형태로 선언하여 사용할 수 있습니다.
+
+![YaxisScaleFormatter](../../assets/img/image40.png)
 
 앞선 예제의 Y축 Scale값입니다. ScaleFormatter 프로퍼티를 통해서 해당
 값을 다른값으로 표현할수 있습니다.
 
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
+//기본적으로 ScaleFormatter는 yaxis에 관련된 프로퍼티이기 때문에
+// yaxis 객체안에 선언합니다.
+        yaxis: {
+        ScaleFormatter : function (e)
+          {
+        //yaxis의 Scale값은 바인딩된 데이터 값이기 때문에, 
+        // Number형식을 따릅니다
 
-//기본적으로 ScaleFormatter는 yaxis에 관련된 프로퍼티이기 때문에 yaxis
-객체안에 선언합니다.
 
-yaxis: {
-
-ScaleFormatter : function (e)
-
-{
-
-//yaxis의 Scale값은 바인딩된 데이터 값이기 때문에, 기본적으로
-Number형식을 따릅니다
-
-var num = Number(e.number) \* 6; //매개변수 e는 바인딩된 데이터값이
-넘어오게되며, 설정하고 싶은 값을 변수에 담아줍니다.
-
-return String(num) //설정된 값을 String으로 변환해 반환합니다.,
-
-}
-
-}
-
-}
-
+        //매개변수 e는 바인딩된 데이터값이 넘어오게되며, 
+        //설정하고 싶은 값을 변수에 담아줍니다.
+        var num = Number(e.number) \* 6;
+        //설정된 값을 String으로 변환해 반환합니다. 
+        return String(num) 
+          }
+        }
+    }
 }).draw();
+```
 
-기존![텍스트, 스크린샷, 도표, 그래프이(가) 표시된 사진 자동 생성된
-설명](media/image41.png){width="7.579166666666667in"
-height="6.101388888888889in"} Sclae값에 \*6을 한 데이터를 반환한
+![ScaleFormatter2](../../assets/img/image41.png)
+
+
+Sclae값에 \*6을 한 데이터를 반환한
 결과입니다. SclaeFormmater를 설정하게되면, 기존에 설정했던 Scale 구분점
 값이나, Post, Pre값들은 초기화 되게 됩니다.
 
 이와 같이 Scale 데이터 값을 특정 값으로 표현할 수 있습니다.
 
-#### ![스크린샷, 라인, 도표, 그래프이(가) 표시된 사진 자동 생성된 설명](media/image42.png){width="7.772916666666666in" height="3.6180555555555554in"}Y축 Property 기본 예제 (Tickmarks 관련 예제)
 
+#### Y축 Property 기본 예제 (Tickmarks 관련 예제) 
+![YaxisTickmarks](../../assets/img/image42.png)
+
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
 
-yaxis: { //기본적인 설정은 Basic예제와 동일합니다
-
-Tickmarks: true, //차트 Y축의 눈금선 표시여부를 설정할 수 있습니다.
-
-TickmarksCount: 5, //차트 Y축의 눈금선 표시여부를 설정할 수 있습니다.
-
-TickmarksLastBottom:false, //차트 Y축의 눈금선 표시여부를 설정할 수
-있습니다.
-
-TickmarksLastTop:false, //차트 Y축의 눈금선 표시여부를 설정할 수
-있습니다.
-
-TickmarksLength: 10, //차트 Y축의 눈금선 표시여부를 설정할 수 있습니다.
-
-LabelsFontStyle: \'20px bold Pretendard\'
-
-}
-
-}
-
-}
-
+      yaxis: { //기본적인 설정은 Basic예제와 동일합니다
+        Tickmarks: true, //차트 Y축의 눈금선 표시여부를 설정할 수 있습니다.
+        TickmarksCount: 5, //차트 Y축의 눈금선 표시여부를 설정할 수 있습니다.
+        TickmarksLastBottom:false, //차트 Y축의 눈금선 표시여부를 설정할 수있습니다.
+        TickmarksLastTop:false, //차트 Y축의 눈금선 표시여부를 설정할 수 있습니다.
+        TickmarksLength: 10, //차트 Y축의 눈금선 표시여부를 설정할 수 있습니다.
+        LabelsFontStyle: '20px bold Pretendard'
+      }
+  }
 }).draw();
+```
 
 #### Y축 Property 기본 예제 (title 관련 예제)
 
 다음은 Y축 title에 관한 기본 예제입니다.
 
-![텍스트, 스크린샷, 도표, 폰트이(가) 표시된 사진 자동 생성된
-설명](media/image43.png){width="7.4430555555555555in"
-height="4.547916666666667in"}![스크린샷, 텍스트, 그래프, 도표이(가)
-표시된 사진 자동 생성된
-설명](media/image44.png){width="7.3805555555555555in"
-height="3.685416666666667in"}
+![YaxisTitle](../../assets/img/image43.png)
+![YaxisTitle2](../../assets/img/image44.png)
 
+
+```javascript
 var bar = new DxChartBar({
-
 id: cvs,
-
 elem : canvas,
-
 binddataset : this.Dataset00,
-
-data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],
-
+data:["bind:total","bind:man","bind:woman"],
 options: {
-
-yaxis: { //기본적인 설정은 Basic예제와 동일합니다
-
-Use : true,
-
-Color:\"#E2E2E2\",
-
-LabelsOffsetX:-15, //y축과 label 사이 15px 설정
-
-Title:\'DxChart 튜토리얼\', //차트 Y축 타이틀을 설정할 수 있습니다.
-
-TitleColor:\'red\', //차트 Y축 타이틀을 색상을 설정할 수 있습니다.
-
-TitleFontStyle:\'18px bold Pretendard\', //차트 Y축 타이틀 폰트 스타일을
-설정할 수 있습니다.
-
-TitleHalign:\'center\', //차트 Y축 타이틀 가로정렬을 설정할수 있습니다.
-'left','right','cetner'.
-
-TitleOffsetX:80, //차트 Y축 타이틀 OffsetX 값을 설정할 수 있습니다.
-
-TitleOffsetY:-20, //차트 Y축 타이틀 OffsetY 값을 설정할 수 있습니다.
-
-TitlePos:-20, //차트 Y축 타이틀을 설정할 수 있습니다.
-
-TitleValign:\'cetner\', //차트 Y축 타이틀 세로정렬 값 을 설정할 수
-있습니다.
-
-TitleX:50, //차트 Y축 타이틀 X좌표값 을 설정할 수 있습니다.
-
-TitleY:400 //차트 Y축 타이틀 Y좌표값 을 설정할 수 있습니다.
-
-}
-
-}
-
-}
-
+      yaxis: { //기본적인 설정은 Basic예제와 동일합니다
+          Use : true,
+          Color:"#E2E2E2",
+          LabelsOffsetX:-15, //y축과 label 사이 15px 설정
+          //차트 Y축 타이틀을 설정할 수 있습니다.
+          Title:'DxChart 튜토리얼',
+           //차트 Y축 타이틀을 색상을 설정할 수 있습니다. 
+          TitleColor:'red',
+          //차트 Y축 타이틀 폰트 스타일을설정할 수 있습니다.
+          TitleFontStyle:'18px bold Pretendard',
+          //차트 Y축 타이틀 가로정렬을 설정할수 있습니다.   'left','right','cetner'.
+          TitleHalign:'center', 
+         //차트 Y축 타이틀 OffsetX 값을 설정할 수 있습니다.
+          TitleOffsetX:80,
+          //차트 Y축 타이틀 OffsetY 값을 설정할 수 있습니다. 
+          TitleOffsetY:-20,
+          //차트 Y축 타이틀을 설정할 수 있습니다. 
+          TitlePos:-20,
+          //차트 Y축 타이틀 세로정렬 값 을 설정할 수 있습니다 
+          TitleValign:'cetner',
+          //차트 Y축 타이틀 X좌표값 을 설정할 수 있습니다.
+          TitleX:50,
+          //차트 Y축 타이틀 Y좌표값 을 설정할 수 있습니다. 
+          TitleY:400 
+      }
+    }
 }).draw();
+```
+### Background 설정하기
 
-###  {#section-1 .unnumbered}
+차트의 Background를 설정합니다.
 
-###  {#section-2 .unnumbered}
+![Background](../../assets/img/image45.png){
+
+**Properties**
+
+<table style="border-collapse: collapse; width: 100%; margin: auto;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding: 10px;">Sub property</th>
+      <th style="border: 1px solid black; padding: 10px;">설명</th>
+      <th style="border: 1px solid black; padding: 10px;">타입</th>
+      <th style="border: 1px solid black; padding: 10px;">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">BarsColor1</td>
+      <td style="border: 1px solid black; padding: 10px;">배경에서 막대의 가로 색상을 지정합니다. 지정한 색이 홀수 번째에 반복됩니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">rgba(0,0,0,0)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">BarsColor2</td>
+      <td style="border: 1px solid black; padding: 10px;">배경에서 막대의 가로 색상을 지정합니다. 지정한 색이 짝수 번째에 반복됩니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">rgba(0,0,0,0)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">BarsCount</td>
+      <td style="border: 1px solid black; padding: 10px;">배경의 막대 개수를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Color</td>
+      <td style="border: 1px solid black; padding: 10px;">차트의 여백을 제외한 배경 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Grid</td>
+      <td style="border: 1px solid black; padding: 10px;">배경에 그리드를 표시할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridAutofit</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 픽셀 너비/높이를 지정하는 대신 자동 맞춤을 사용할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridAutofitAlign</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드 autofit을 사용했을 때 정렬을 사용할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridBorder</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드 주위에 테두리를 그릴지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridColor</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">#dddddd</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridDashed</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드를 대시(-) 형태로 표현할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">FALSE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridDotted</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드를 점(.) 형태로 표현할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">FALSE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridHlines</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 가로 선을 그릴지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridHlinesCount</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 가로 선 수를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">5</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridHsize</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 가로 크기를 지정합니다. backgroundGridAutofit 옵션이 false일 때만 동작합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">25</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridLineWidth</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드 선의 두께를 지정합니다. 소수점도 허용됩니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridThreedYaxis</td>
+      <td style="border: 1px solid black; padding: 10px;">3D 차트를 그렸을 때 배경 그리드가 Y축으로 확장할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </<tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridVlines</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 세로 선을 그릴지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">GridVsize</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 세로 크기를 지정합니다. backgroundGridAutofit 옵션이 false일 때만 동작합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">25</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Hbars</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 그리드의 특정 위치에 특정 크기의 가로 막대를 지정합니다. 첫 번째 값은 데이터 범위 내에 있어야 표시됩니다. 두 번째 값은 크기를 지정하며 마지막 값은 색을 지정합니다. []안에 ,로 구분하여 여러 막대를 여러 위치에 그릴 수 있습니다. background : {Hbars : [[70, 10, 'yellow'], [120, 20, 'blue']]}</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">[]</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Image</td>
+      <td style="border: 1px solid black; padding: 10px;">배경에 사용할 이미지를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ImageAlign</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 이미지를 정렬을 지정합니다. top, bottom, left, right 등을 기본적으로 사용 가능하며 top left, bottom right 등 응용도 가능합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ImageAlpha</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 이미지의 투명도를 지정합니다. 0~1까지 지정할 수 있으며 작아질수록 투명해집니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ImageH</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 이미지의 높이를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ImageStretch</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 이미지가 차트에 맞게 확장될 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ImageW</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 이미지의 길이를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ImageX</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 이미지의 가로 좌표를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ImageY</td>
+      <td style="border: 1px solid black; padding: 10px;">배경 이미지의 세로 좌표를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+#### Background Grid 속성
+
+Background Grid 속성을 설정할 수 있습니다.
+
+![BackgroundGrid](../../assets/img/image46.png)
+
+```javascript
+
+ var bar = new DxChartBar({
+                                                                           
+ id:cvs,                                                                       
+ elem : canvas,                                                             
+ binddataset : this.Dataset00
+ data:["bind:total","bind:man","bind:woman"],
+        options:{                       
+        //기본적인 설정은 Basic예제와 동일합니다                                       
+        background:{                                                          
+             Grid: true //Grid 옵션을 설정합니다.                                  
+            ,GridColor:"#E2E2E2" //Grid의 색상을 설정합니다.                             
+            ,GridDashed:true //Grid의 점 및 선 형태를 설정합니다.                                                                   
+            ,GridDotted:false //Grid의 점 및 선 형태를 설정합니다.                                                          
+            ,GridHlinesCount:4 //Grid의 가로 선의 개수를 지정합니다.             
+            ,GridLineWidth:2 //Grid의 선의 굵기를 지정합니다.                      
+          }                                                                   
+        }                                                                      
+ }).draw();                                                            
+```
+
+#### Background 색상 설정하기
+
+Background 색상 지정 가능합니다.
+
+![BackgroundColor](../../assets/img/image47.png)
+
+```javascript
+var bar = new DxChartBar({
+    id: cvs,
+    elem: canvas,
+    binddataset: this.Dataset00,
+    data: ["bind:total", "bind:man", "bind:woman"],
+    options: {
+        // 기본적인 설정은 Basic 예제와 동일합니다
+        background: {
+            Color: "#333", // BackGroud Color를 설정합니다.
+            GridVlines: false, // Grid의 수직 선을 미설정합니다
+            GridBorder: true // Grid Border를 설정합니다.
+        }
+    }
+}).draw();
+```
+
+#### Background Image 설정하기
+
+Background Image 설정이 가능합니다.
+
+![BackgroundImage](../../assets/img/image48.png)
+
+```javascript
+var bar = new DxChartBar({
+    id: cvs,
+    elem: canvas,
+    binddataset: this.Dataset00,
+    data: ["bind:total", "bind:man", "bind:woman"],
+    options: {
+        // 기본적인 설정은 Basic 예제와 동일합니다
+        background: {
+            Image: 'images::barBg1.png', // 이미지 경로를 설정합니다.
+            ImageAlpha: 0.3, // 이미지의 알파 값을 설정합니다.
+            Grid: false // Grid는 사용안함으로 설정합니다.
+        }
+    }
+}).draw();
+```
+
+### Label 설정하기
+
+![Label](../../assets/img/image49.png)
+
+**Properties**
+
+<table style="border-collapse: collapse; width: 80%; margin: auto;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">Sub property</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">설명</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">타입</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Above</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">FALSE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveAngle</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 각도를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveBackground</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 배경 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">rgba(0,0,0,0)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveBorderStyle</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 테두리 스타일을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveColor</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨 텍스트의 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveDecimals</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 지정한 값만큼의 소수점을 표시합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveFontStyle</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 글꼴 스타일을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveFormatter</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 데이터를 특정한 형식으로 변환하거나 서식을 적용합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveOffset</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 오프셋을 지정합니다. 이 오프셋을 지정하면 세로 오프셋을 지정한 것과 동일합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveOffsetX</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 가로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveOffsetY</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 세로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AbovePoint</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 소수점이 나올 자리의 구분 기호를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveSpecific</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨 값을 특정한 값으로 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveThousand</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 천 단위 구분 기호를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">,</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveUnitsPost</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 데이터 뒤에 표시할 문자를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">AboveUnitsPre</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 요소 위에 라벨을 표시했을 때, 라벨의 데이터 앞에 표시할 문자를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Ingraph</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 내부에 그려지는 라벨을 사용할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">IngraphColor</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 내부 라벨의 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">IngraphFontStyle</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 내부 라벨의 글꼴 스타일을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">IngraphOffsetX</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 내부 라벨의 가로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">IngraphOffsetY</td>
+      <td style="border: 1px solid black; padding: 10px;">차트 내부 라벨의 세로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### Lable Above 설정하기
+
+Lable를 해당 차트 위에 표시할 수 있습니다.
+
+![Labels](../../assets/img/image49.png)
+
+```javascript
+var bar = new DxChartBar({
+    id: 'cvs',
+    elem: 'canvas',
+    binddataset: this.Dataset00,
+    data: ["bind:total", "bind:man", "bind:woman"],
+    options: {
+        // 기본적인 설정은 Basic 예제와 동일합니다
+        labels: {
+            Above: true, // labelsAbocve를 설정합니다.
+            //labelsAbocve의 Background색상을 설정합니다
+            AboveBackground:'rgba(255,255,255,0.75)', 
+        }
+    }
+}).draw();
+```
+#### Lable Above Image 설정하기
+
+Lable의 이미지를 포함하여 차트 위에 표시할 수 있습니다. (**Single bar**만
+지원합니다)
+
+![LabelImage](../../assets/img/image50.png)
+
+
+```javascript
+var bar = new DxChartBar({
+    id: 'cvs',
+    elem: 'canvas',
+    binddataset: this.Dataset00,
+    data: ["bind:val"],
+    options: {
+       // Xaxis를 설정합니다.
+        xaxis: {
+            Labels: ['bind:year'],
+            Color: "#E2E2E2",
+            LabelsOffsetY: 5,
+            Tickmarks: false
+        },
+    // Yaxis를 설정합니다.
+        yaxis: {
+            Color: "#E2E2E2",
+            LabelsOffsetX: -15,
+            Tickmarks: false
+        },
+   // margin은 Basic예제와 동일합니다
+        margin: {
+         
+        },
+   // Title를 설정합니다.
+        title: {
+            Text: "bar Sample",
+            Y: 73,
+            SubtitleOffsetY: 8
+        },
+  // colorsSequential true 설정 시 default color 순차적으로 보여줍니다.
+        colorsSequential: true,
+       
+        labels: {
+            // labels Above를 미설정합니다.
+            Above: false,
+            // labels Image를 설정합니다.
+            AboveImage: true,
+            // labels Above 이미지 사이 gap을 설정합니다.
+            AboveImageGap: 10,
+            // labels 이미지 url를 설정합니다.
+            AboveImageUrl: [
+                'images::nation/korea.png',
+                'images::nation/japan.png',
+            ],
+            // labels Above 이미지 너비를 설정합니다.
+            AboveImageWidth: 100,
+            // labels Above 이미지 높이를 설정합니다.
+            AboveImageHeight: 50,
+            // labels Above 이미지 테두리 선의 굵기를 설정합니다.
+            AboveImageLineWidth: 0
+    
+        }
+    }
+}).draw();
+```
+
+#### Label Ingraph 설정하기
+
+ 차트 안에 Label을 표시할 수 있습니다.
+
+![LabelsIngraph](../../assets/img/image51.png)
+
+
+```javascript
+var bar = new DxChartBar({
+    id: 'cvs',
+    elem: 'canvas',
+    binddataset: this.Dataset00,
+    data: ["bind:total", "bind:man", "bind:woman"],
+    options: {
+        // 기본적인 설정은 Basic예제와 동일합니다
+
+        labels: {
+           // Ingraph 데이터를 설정합니다.
+            Ingraph: ['종합', '남자', '여자'],
+           // Ingraph 레이블 위치를 설정합니다. (Top false 시 차트 안에서 표시)
+            IngraphLabelTop: true,
+           // IngraphTextBound 데이터를 설정합니다.
+            IngraphTextBound: false
+        }
+    }
+}).draw();
+```
+
+### 범례 설정하기
+
+![Key](../../assets/img/image52.png)
+
+**①**
+
+**②**
+
+차트의 범례를 설정합니다.
+
+**Properties**
+
+  <table style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">하위 속성</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">설명</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">타입</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Background</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 배경 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">white</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Colors</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 아이콘 색을 지정합니다. 지정하지 않으면 요소의 색을 따라갑니다. 데이터셋 수만큼 지정할 수 있습니다. 데이터셋이 2개일 때의 예시가 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ColorShape</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 아이콘 모양을 지정합니다. 기본은 square이며, circle, triangle, line 등을 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">square</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Data</td>
+      <td style="border: 1px solid black; padding: 10px;">범례에 사용 될 라벨 데이터를 지정합니다. binddataset을 사용하기 때문에 배열 안에 해당 데이터셋의 컬럼 값을 사용합니다. 또는 임의로 지정할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Halign</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 세로 정렬을 지정합니다. left와 right를 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Interactive</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 라벨을 클릭했을 때 상호작용할 지 여부입니다. 범례 라벨 클릭 시 해당 데이터 영역이 강조됩니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">FALSE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">InteractiveHighlightChartFill</td>
+      <td style="border: 1px solid black; padding: 10px;">범례 키에 해당하는 데이터 영역을 지정한 색으로 채웁니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">rgba(255,255,255,0.7)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">InteractiveHighlightChartStroke</td>
+      <td style="border: 1px solid black; padding: 10px;">범례 키에 해당하는 데이터 영역의 테두리를 지정한 색으로 채웁니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">rgba(255,0,0,0.3)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">InteractiveHighlightLabel</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 라벨을 강조하는 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">rgba(255,0,0,0.2)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsColor</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 라벨의 색을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsFontStyle</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 라벨의 폰트 스타일을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">12px Tahoma</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsOffsetX</td>
+      <td style="border: 1px solid black; padding: 10px;">범례 라벨의 가로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LabelsOffsetY</td>
+      <td style="border: 1px solid black; padding: 10px;">범례 라벨의 세로 오프셋을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">LineWidth</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 테두리 선의 두께를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Position</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 표현 방식을 지정합니다. graph, gutter, margin을 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">graph</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">PositionMarginBoxed</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 Position이 'margin'일 때, 범례를 박스 안에 표시할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">FALSE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">PositionMarginHSpace</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 Position이 'margin'일 때, 범례의 데이터 사이의 간격을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">PositionX</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 가로 좌표를 지정할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">PositionY</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 세로 좌표를 지정할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Rounded</td>
+      <td style="border: 1px solid black; padding: 10px;">범례의 모서리를 둥글게 할 지 여부입니다. keyPosition이 margin이나 gutter에서만 동작합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Shadow</td>
+      <td style="border: 1px solid black; padding: 10px;">범례에 음영을 표시할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">FALSE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">ShadowStyle</td>
+      <td style="border: 1px solid black; padding: 10px;">범례 음영의 스타일을 지정합니다. 'offsetX offsetY blur color' 로 구성되어 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">2px 2px 3px #666666</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
++-----------------------------------+----------------------------------+
+| **① 범례 예제**                   | **② 범례 예제**                  |
++===================================+==================================+
+| // Basic예제와 동일합니다         | // Basic예제와 동일합니다        |
+|                                   |                                  |
+| options: {                        | options: {                       |
+|                                   |                                  |
+| key: {                            | key: {                           |
+|                                   |                                  |
+| Data :                            | Data :                           |
+| \[\'종합\',\'남자\',\'여자\'\]    | \[\'종합\',\'남자\',\'여자\'\]   |
+|                                   |                                  |
+| // Position을 margin으로          | // Position을 \'graph\'으로      |
+| 설정합니다.                       | 설정합니다.                      |
+|                                   |                                  |
+| ,Position :\'margin\'             | ,Position :\'graph\'             |
+|                                   |                                  |
+| ,PositionMarginHSpace: 15 // 범례 | // 범례의 테두리 색상을          |
+| 안 수평 여백                      | 설정합니다.                      |
+|                                   |                                  |
+| // Y축 위치 설정                  | ,BorderColor:\"#E2E2E2\"         |
+|                                   |                                  |
+| ,PositionY:(canvas.offsetHeight - | }                                |
+| 20) - 15                          |                                  |
+|                                   | },                               |
+| }                                 |                                  |
+|                                   |                                  |
+| },                                |                                  |
++-----------------------------------+----------------------------------+
+
+### 툴팁 설정하기
+
+ ![ToolTip](../../assets/img/image53.png)
+
+  -----------------------------------------------------------------------------
+  Sub property              설명                        타입      기본값
+  ------------------------- --------------------------- --------- -------------
+  Css                       툴팁의 CSS를 지정합니다.    object    null
+                            지정할 수 있는 CSS는 color,           
+                            backgroundColor, fontSize,            
+                            fontFamily 등이 있습니다.             
+
+  Data                      툴팁에 보여줄 데이터를      object    null
+                            지정합니다. \'%{key}\',               
+                            \'%{value}\',html 태그와              
+                            %prop, %property 등을                 
+                            사용할 수 있습니다.                   
+
+  Effect                    툴팁의 효과를               string    slide
+                            지정합니다. slide, fade를             
+                            사용할 수 있습니다.                   
+
+  Event                     툴팁을 발생시키는 이벤트를  string    onmousemove
+                            지정합니다. onclick,                  
+                            onmousemove 를 사용할 수              
+                            있습니다.                             
+
+  FormattedDecimals         %{value_formatted}처럼      number    0
+                            형식이 지정된 툴팁을 사용할           
+                            때 소수점 이하 자릿수를               
+                            지정합니다.                           
+
+  FormattedKeyColors        %{key}처럼 형식이 지정된    object    null
+                            툴팁을 사용할 때                      
+                            %{key}부분에 표시되는                 
+                            색상을 지정할 수 있습니다.            
+
+  FormattedKeyColorsShape   %{Key}처럼 형식이 지정된    string    square
+                            툴팁을 사용할 때                      
+                            %{key}부분에 표시되는                 
+                            모양을 지정할 수 있습니다.            
+                            circle, square를                      
+                            사용가능합니다.                       
+
+  FormattedKeyLabels        %{key}처럼 형식이 지정된    object    \[\]
+                            툴팁을 사용할 때                      
+                            %{key}부분에 표시되는                 
+                            라벨을 지정합니다.                    
+
+  FormattedListItems        Data에 %{list}를 사용할 때, object    null
+                            리스트로 표시될 아이템을              
+                            지정합니다. 2차원 배열을              
+                            사용하거나                            
+                            DxChart.convertDataset을              
+                            사용할 수 있습니다.                   
+
+  FormattedListType         Data에 %{list}를 사용할 때, string    ul
+                            리스트에서 표시될 아이템의            
+                            정렬을 지정합니다. ul,ol이            
+                            사용 가능합니다.                      
+
+  FormattedPoint            %{value_formatted}처럼      string    .
+                            형식이 지정된 툴팁에서                
+                            소수점 표시 방식을                    
+                            지정합니다.                           
+
+  FormattedTableData        툴팁의 형식을 테이블의      object    null
+                            형태로 지정합니다. 3차원              
+                            배열을 사용해야 합니다.               
+                            데이터 예시는 첫번째                  
+                            데이터셋의 첫번째 데이터              
+                            툴팁입니다. 같은 방법으로             
+                            n번째 테이블 툴팁을 지정할            
+                            수 있으며, 첫 번째                    
+                            데이터셋의 데이터 개수만큼            
+                            배열이 작성된 후 추가                 
+                            배열부터는 첫번째                     
+                            데이터셋의 두번째 데이터              
+                            툴팁으로 넘어갑니다.                  
+
+  FormattedTableHeaders     툴팁 테이블을 사용할 때,    object    null
+                            테이블의 헤더를 지정할 수             
+                            있습니다.                             
+
+  FormattedThousand         %{value_formatted}처럼      string    ,
+                            형식이 지정된 툴팁에서 천             
+                            단위 구분 기호를                      
+                            지정합니다.                           
+
+  FormattedUnitsPost        %{value_formatted}처럼      string    
+                            형식이 지정된 툴팁에서 뒤에           
+                            표시할 문자를 지정합니다.             
+
+  FormattedUnitsPre         %{value_formatted}처럼      string    
+                            형식이 지정된 툴팁에서 앞에           
+                            표시할 문자를 지정합니다.             
+
+  Highlight                 툴팁이 표시될 때 강조       boolean   TRUE
+                            효과를 사용할 지                      
+                            여부입니다.                           
+
+  HotspotXonly              데이터 포인트의 Y좌표가 0인 boolean   FALSE
+                            X축에 가까이 가면 해당                
+                            데이터 포인트에 툴팁이 뜰             
+                            지 여부입니다.                        
+  -----------------------------------------------------------------------------
+
+Tooltip의 데이터를 표시하기 위해 사용하는 macro종류
+
++-------------+--------------------------------------------------------+
+| macro       | 설명                                                   |
++=============+========================================================+
+| %{index}    | 여러 개의 차트를 사용할 경우, 차트의 index             |
+|             |                                                        |
+|             | (0부터 시작)                                           |
++-------------+--------------------------------------------------------+
+| %{dataset}  | 하나의 차트에서 선택/지정할 데이터의 index             |
+|             |                                                        |
+|             | (0부터 시작)                                           |
++-------------+--------------------------------------------------------+
+| %{dataset2} | bioplar차트에서 사용                                   |
+|             |                                                        |
+|             | 왼쪽/오른쪽별로 번호를 부여                            |
+|             |                                                        |
+|             | -   dataset은 왼쪽부터 0\~n으로 번호 부여한 후         |
+|             |     오른쪽은 n+1\~2n으로 번호를 부여되지만, dataset2는 |
+|             |     왼쪽부터0\~n으로 번호 부여한 후 오른쪽은 다시      |
+|             |     0\~n으로 번호 부여                                 |
++-------------+--------------------------------------------------------+
+| %{seq}      | 차트가 여러 개인 경우, 전체를 하나의 index로 처리 할   |
+|             | 경우의 데이터index                                     |
+| %{sequen    |                                                        |
+| tial_index} | (0부터 시작)                                           |
++-------------+--------------------------------------------------------+
+| %{prop      | 차트의 타이틀 텍스트 (option의 title에 해당 )          |
+| erty:title} |                                                        |
++-------------+--------------------------------------------------------+
+| %{          | 선택한 X축 라벨을 표시합니다.                          |
+| property:xa |                                                        |
+| xisLabels\[ |                                                        |
+| %{index}\]} |                                                        |
++-------------+--------------------------------------------------------+
+| %{globa     | global로 정의한 데이터를 표시.                         |
+| l:contries} |                                                        |
+|             | (nexacro에서는 사용할 수 없습니다.%{property:xxx}를    |
+| %{global    | 사용하여 같은 효과를 낼 수 있습니다.)                  |
+| :contries\[ |                                                        |
+| %{index}\]} |                                                        |
+|             |                                                        |
+| %{global:c  |                                                        |
+| ontries\[%{ |                                                        |
+| dataset}\]} |                                                        |
++-------------+--------------------------------------------------------+
+| %{value}    | 선택된 데이터 값                                       |
+|             |                                                        |
+| %{value2}   | vaue : 원래의 값 그대로를 표시합니다.(123456)          |
+|             |                                                        |
+| %{value     | value_formatted : 숫자인 경우 format(123,456 형식)을   |
+| \           | 적용하여 표시합니다.                                   |
+| _formatted} |                                                        |
++-------------+--------------------------------------------------------+
+| %{percent}  | 100% 차트인 경우, 해당 값에 대한 %비율을 표시          |
+|             |                                                        |
+| %{percent   |                                                        |
+| \           |                                                        |
+| _formatted} |                                                        |
++-------------+--------------------------------------------------------+
+| %{side}     | bipolar차트인 경우 , 오른쪽/왼쪽의 데이터여부를 표시   |
+|             |                                                        |
+| %{          | side : 0(왼쪽) / 1(오른쪽)                             |
+| side_title} |                                                        |
+|             | side_title : "left"(왼쪽) , "right"(오른쪽)            |
++-------------+--------------------------------------------------------+
+| %{start}    | Gantt차트에서 사용하는 데이터값                        |
+|             |                                                        |
+| %{end}      | start : Data의 start값                                 |
+|             |                                                        |
+| %{duration} | end : Data의 end 값                                    |
+|             |                                                        |
+| %{complete} | duration : Data의 duration 값                          |
+|             |                                                        |
+| %{label}    | complete : Data의 complete 값                          |
+|             |                                                        |
+|             | label : data의 label값                                 |
+|             |                                                        |
+|             | 사용예)                                                |
+|             |                                                        |
+|             | binddataset : this.Dataset00,                          |
+|             |                                                        |
+|             | data: \'bind:start=start,bind:end=end,                 |
+|             | bind:complete=complete,bind:label=label,bind:linewidth |
+|             | =linewidth,bind:color=color,bind:bgcolor=background\', |
+|             |                                                        |
+|             | option : {                                             |
+|             |                                                        |
+|             | tooltips : {Data : \'%{label}\<br\>START:              |
+|             | %{start}\<br\>END: %{end}\<br\>COMPLETE:               |
+|             | %{complete}\'}                                         |
+|             |                                                        |
+|             | }                                                      |
+|             |                                                        |
+|             | }                                                      |
++-------------+--------------------------------------------------------+
+| %{table}    | HTML의 table태그의 값                                  |
+|             |                                                        |
+|             | FormattedTableData에 설정된 데이터를 표시합니다.       |
+|             |                                                        |
+|             | 해당 형식은 nexacro인 경우는 2차원 array형태,          |
+|             |                                                        |
+|             | HTML인 경우 table tag의 아이디                         |
++-------------+--------------------------------------------------------+
+| %{group}    | %{dataset}%{dataset2}와 동일                           |
+|             |                                                        |
+| %{group2}   |                                                        |
++-------------+--------------------------------------------------------+
+| %{list}     | HTML의 list태그의 값                                   |
+|             |                                                        |
+|             | FormattedListItem에 설정된 데이터를 표시합니다.        |
+|             |                                                        |
+|             | 해당 형식은 nexacro인 경우는 2차원 array형태,          |
+|             |                                                        |
+|             | HTML인 경우 list tag의 아이디                          |
+|             |                                                        |
+|             | 사용예)                                                |
+|             |                                                        |
+|             | tooltips:{Data:\'\<h2\>Results\</h2\> %{list}\',       |
+|             |                                                        |
+|             | Effect: \'none\',                                      |
+|             |                                                        |
+|             | FormattedListType: \'ol\',                             |
+|             |                                                        |
+|             | FormattedListItems: \[                                 |
+|             |                                                        |
+|             | \[\'Barry\',\'Larry\',\'Harry\'\],                     |
+|             |                                                        |
+|             | \[\'Bill\',\'Lil\',\'Jill\'\],                         |
+|             |                                                        |
+|             | \[\'Jack\',\'Zak\',\'Quack\'\]                         |
+|             |                                                        |
+|             | \],                                                    |
+|             |                                                        |
+|             | Event:\"onclick\"                                      |
+|             |                                                        |
+|             | },                                                     |
++-------------+--------------------------------------------------------+
+| %{func      | 지정한 함수를 실행하고 그 결과를 표시합니다.           |
+| tion:xxx()} |                                                        |
+|             | -   함수는 반드시 리턴값이 있어야 하며,                |
+|             |     String,number값이어야 합니다.                      |
+|             |                                                        |
+|             | -   사용할 수 있는 함수                                |
+|             |                                                        |
+|             |     \- javascript 고유 함수                            |
+|             |                                                        |
+|             |     \- DxChart오브젝트의 메소드 함수                   |
+|             |                                                        |
+|             |     \- Nexacro의 사용자 함수                           |
++-------------+--------------------------------------------------------+
+| %{custom}   | FormattedCustom에 지정된 함수를 실행합니다.            |
+|             |                                                        |
+|             | 파라미터는 specific이며, 각 차트마다 다르게 세팅이     |
+|             | 됩니다.                                                |
+|             |                                                        |
+|             | 사용예)                                                |
+|             |                                                        |
+|             | tooltips:{                                             |
+|             |                                                        |
+|             | Data:\'%{custom}\',//\'%{value}\',                     |
+|             |                                                        |
+|             | Css: {fontSize: \'14pt\'},                             |
+|             |                                                        |
+|             | FormattedCustom : function(specific) {                 |
+|             |                                                        |
+|             | var item = specific.object.getItem(specific.index);    |
+|             |                                                        |
+|             | return {                                               |
+|             |                                                        |
+|             | label : item.name + \" Airport\<br\>\"                 |
+|             |                                                        |
+|             | \+ \"Code:\" + item.abbrev                             |
+|             |                                                        |
+|             | };                                                     |
+|             |                                                        |
+|             | }                                                      |
+|             |                                                        |
+|             | }                                                      |
++-------------+--------------------------------------------------------+
+
+#### 툴팁 유형 1
+
+![스크린샷, 텍스트, 도표, 라인이(가) 표시된 사진 자동 생성된
+설명](media/image53.png){width="7.151025809273841in"
+height="3.5172364391951008in"}
+
++-----------------------------------------------------------------------+
+| var bar = new DxChartBar({                                            |
+|                                                                       |
+| id: cvs,                                                              |
+|                                                                       |
+| elem : canvas,                                                        |
+|                                                                       |
+| binddataset : this.Dataset00,                                         |
+|                                                                       |
+| data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],                  |
+|                                                                       |
+| options: {                                                            |
+|                                                                       |
+| //기본적인 설정은 Basic예제와 동일합니다                              |
+|                                                                       |
+| tooltips: {                                                           |
+|                                                                       |
+| Data : \'%{key}\', // Data 값을 "%{key}" 설정 시 범례 형태로          |
+| 표시됩니다.                                                           |
+|                                                                       |
+| FormattedUnitsPost: \'명\', // 뒤에 붙일 문자열을 설정합니다.         |
+|                                                                       |
+| Effect : \'fade\', // Tooltips의 효과를 설정합니다.                   |
+|                                                                       |
+| Pointer : true, // Tooltips의 포인터를 설정합니다.                    |
+|                                                                       |
+| FormattedKeyLabels: \[\'종합\',\'남자\',\'여자\'\], // Tooltips의 key |
+| 레이블을 추가합니다.설정합니다.                                       |
+|                                                                       |
+| },                                                                    |
+|                                                                       |
+| }                                                                     |
+|                                                                       |
+| }                                                                     |
+|                                                                       |
+| }).draw();                                                            |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+#### 툴팁 유형 2
+
+![스크린샷, 도표, 그래프, 라인이(가) 표시된 사진 자동 생성된
+설명](media/image54.png){width="7.30595363079615in"
+height="3.3129636920384953in"}
+
++-----------------------------------------------------------------------+
+| var bar = new DxChartBar({                                            |
+|                                                                       |
+| id: cvs,                                                              |
+|                                                                       |
+| elem : canvas,                                                        |
+|                                                                       |
+| binddataset : this.Dataset00,                                         |
+|                                                                       |
+| data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],                  |
+|                                                                       |
+| options: {                                                            |
+|                                                                       |
+| //기본적인 설정은 Basic예제와 동일합니다                              |
+|                                                                       |
+| tooltips: {                                                           |
+|                                                                       |
+| // Html 태그를 삽입하고 매크로를 통해 표시합니다                      |
+|                                                                       |
+| // Gender는 해당 key 값, value는 해당 데이터 값입니다.                |
+|                                                                       |
+| Data:\'\<span st                                                      |
+| yle=\"color:#ccc\"\>\[%{property:gender\[%{index}\]}\]:\</span\>\<b\> |
+| %{value}}명 \</b\>},                                                  |
+|                                                                       |
+| gender : \[\'종합\',\'남자\',\'여자\'\], // 사용가 설정한 property로  |
+| tootltip 데이터를 호출합니다.                                         |
+|                                                                       |
+| },                                                                    |
+|                                                                       |
+| }                                                                     |
+|                                                                       |
+| }                                                                     |
+|                                                                       |
+| }).draw();                                                            |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+1.  툴팁 유형3
+
+    ![텍스트, 스크린샷, 도표, 그래프이(가) 표시된 사진 자동 생성된
+    설명](media/image55.png){width="7.292749343832021in"
+    height="2.69458552055993in"}
+
++-----------------------------------------------------------------------+
+| var strHtml = \"\";                                                   |
+|                                                                       |
+| strHtml += \'A summary of the template options that are available to  |
+| you.\<p /\>\';                                                        |
+|                                                                       |
+| strHtml += \'\<table border=\"1\" align=\"center\"                    |
+| cellspacing=\"0\"\>\';                                                |
+|                                                                       |
+| strHtml +=                                                            |
+| \'\<tr\>\<td\>%%{index}\</td\>\<td\>%{index}\</td\>\</tr\>\';         |
+|                                                                       |
+| strHtml +=                                                            |
+| \'\<tr\>\<td\>%%{dataset}\</td\>\<td\>%{dataset}\</td\>\</tr\>\';     |
+|                                                                       |
+| strHtml += \'\<tr\>\<td\>                                             |
+| %%{sequential_index}\</td\>\<td\>%{sequential_index}\</td\>\</tr\>\'; |
+|                                                                       |
+| strHtml += \'\<tr\>\<td\>%%{seq}\</td\>\<td\>%{seq}\</td\>\</tr\>\';  |
+|                                                                       |
+| strHtml +=                                                            |
+| \'\<tr\>\<td\>%%{value}\</td\>\<td\>%{value}\</td\>\</tr\>\';         |
+|                                                                       |
+| strHtml += \'\<tr\>\<td                                               |
+| \>%%{value_formatted}\</td\>\<td\>%{value_formatted}\</td\>\</tr\>\'; |
+|                                                                       |
+| strHtml +=                                                            |
+| \'\<tr\>\<td\>%%{property:xaxisLabels\[%%{dataset}\]}\</td\>\';       |
+|                                                                       |
+| strHtml +=                                                            |
+| \'\<td\>%{property:xaxisLabels\[%{dataset}\]}\</td\>\</tr\>\';        |
+|                                                                       |
+| strHtml += \'\<tr                                                     |
+| \>\<td\>%%{prop:title}\</td\>\<td\>%{prop:titleText}\</td\>\</tr\>\'; |
+|                                                                       |
+| strHtml += \'\<tr\>\<td\>%{property:myNames\[%%{dataset}\]} (custom   |
+| property)\</td\>\';                                                   |
+|                                                                       |
+| strHtml += \'\<td\>%{property:myNames\[%{dataset}\]}\</td\>\</tr\>\'; |
+|                                                                       |
+| strHtml +=                                                            |
+| \'\<tr\>\<td\>%%{key}\</td\>\<td\>%{key}\</td\>\</tr\>\</table\>\';   |
+|                                                                       |
+| var bar = new DxChartBar({                                            |
+|                                                                       |
+| id: cvs,                                                              |
+|                                                                       |
+| elem : canvas,                                                        |
+|                                                                       |
+| binddataset : this.Dataset00,                                         |
+|                                                                       |
+| data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],                  |
+|                                                                       |
+| options: {                                                            |
+|                                                                       |
+| //기본적인 설정은 Basic예제와 동일합니다                              |
+|                                                                       |
+| tooltips: { Data : strHtml ,// tooltips의 선언한 html Data를          |
+| 설정합니다.                                                           |
+|                                                                       |
+| // 사용자가 선언한 property로도 사용가능합니다.                       |
+|                                                                       |
+| myNames:DxChart.convertDataset(this.Dataset00,\["bind:indecators"\]), |
+|                                                                       |
+| }                                                                     |
+|                                                                       |
+| }                                                                     |
+|                                                                       |
+| }).draw();                                                            |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+# **Effect 설정하기**
+
+차트를 그릴 때 애니메이션의 종류를 지정합니다.
+
+### Draw
+
+애니메이션을 하지 않고, 차트를 그립니다.
+
+### drawAni
+
+> 애니메이션을 지정합니다. 첫번째 인수는 애니메이션의 종류를 나타내고
+> 두번째 인수 이후는 해당 애니메이션의 인수를 지정합니다.
+
+사용 예) wave 애니메이션 : chart.drawAni("wave");
+
+### wave
+
+![텍스트, 스크린샷, 라인, 폰트이(가) 표시된 사진 자동 생성된
+설명](media/image56.gif){width="4.591312335958005in"
+height="2.3970767716535435in"}
+
+> 왼쪽에서 오른쪽으로 아래쪽에서 위쪽으로 애니메이션이 동시에
+> 일어납니다.
+
+기본적인 애니메이션 초당 Frame은 90입니다.
+
++-----------------------------------------------------------------------+
+| var bar= New DxChartBar(config);                                      |
+|                                                                       |
+| bar.wave ();                                                          |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+### grow
+
+![텍스트, 스크린샷, 라인, 번호이(가) 표시된 사진 자동 생성된
+설명](media/image57.gif){width="4.911912729658793in"
+height="2.5923742344706913in"}
+
+> 아래쪽 또는 위쪽으로 애니메이션이 일어납니다. 기본적인 애니메이션 초당
+> Frame은 60입니다.
+
++-----------------------------------------------------------------------+
+| var bar= New DxChartBar(config);                                      |
+|                                                                       |
+| bar.grow ();                                                          |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+### trace
+
+![텍스트, 라인, 도표, 그래프이(가) 표시된 사진 자동 생성된
+설명](media/image58.gif){width="4.948454724409449in"
+height="2.4045395888014in"}
+
+> 왼쪽에서 오른쪽으로 애니메이션이 일어납니다. (적용 대상 차트 : line ,
+> scatter , rader)
+
++-----------------------------------------------------------------------+
+| var line= New DxChartLine(config);                                    |
+|                                                                       |
+| line. trace();                                                        |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+### unfold (toBottom)
+
+![텍스트, 라인, 도표, 그래프이(가) 표시된 사진 자동 생성된
+설명](media/image59.gif){width="5.094248687664042in"
+height="2.866123140857393in"}
+
+> 아래쪽으로 애니메이션이 일어납니다. (적용 대상 차트 : line)
+
++-----------------------------------------------------------------------+
+| var line= New DxChartLine(config);                                    |
+|                                                                       |
+| line. unfold();                                                       |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+### unfoldFromCenterTrace (fromCenter)
+
+![텍스트, 라인, 도표, 그래프이(가) 표시된 사진 자동 생성된
+설명](media/image60.gif){width="5.070808180227472in"
+height="2.709601924759405in"}
+
+> 차트의 중앙에서부터 원래의 값으로 이동하는 애니메이션이 일어납니다.
+> (적용 대상 차트 : line)
+
++-----------------------------------------------------------------------+
+| var line= New DxChartLine(config);                                    |
+|                                                                       |
+| line. unfoldFromCenterTrace();                                        |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+### foldtocenter (toCenter)
+
+![텍스트, 스크린샷, 번호, 라인이(가) 표시된 사진 자동 생성된
+설명](media/image61.gif){width="5.18734908136483in"
+height="2.464241032370954in"}
+
+> 차트의 원래의 값에서부터 중앙으로 이동하는 애니메이션이 일어납니다.
+> (적용 대상 차트 : line)
+
++-----------------------------------------------------------------------+
+| var line= New DxChartLine(config);                                    |
+|                                                                       |
+| line. foldtocenter();                                                 |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+1)  roundRobin 및 roundRobinSequential
+
+> ![스크린샷, 도표, 원, 텍스트이(가) 표시된 사진 자동 생성된
+> 설명](media/image62.gif){width="2.3622047244094486in"
+> height="2.3622047244094486in"} ![스크린샷, 도표, 원, 텍스트이(가)
+> 표시된 사진 자동 생성된
+> 설명](media/image63.gif){width="2.3622047244094486in"
+> height="2.3622047244094486in"}
+>
+> 시계방향으로 돌아가면서 차트를 그리는 애니메이션이 일어납니다.
+>
+> roundRobin은 각각의 값이 조금씩 늘어나면서 파이의 각도가 점점
+> 늘어나지만, roundRobinSequential은 하나의 값이 점점 늘어나면서 하나의
+> 값이 전부 그려지면 다음 값이 늘어나면서 파이의 각도를 증가합니다.
+
++-----------------------------------------------------------------------+
+| var pie= New DxChartPie(config);                                      |
+|                                                                       |
+| pie.roundRobin();                                                     |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+> 적용 대상 차트 : pie , pieSegment, rose
+
+### implode
+
+> ![스크린샷, 도표, 텍스트, 원이(가) 표시된 사진 자동 생성된
+> 설명](media/image64.gif){width="5.339130577427822in"
+> height="2.710188101487314in"}
+>
+> 파이의 각 부분이 바깥으로부터 중심으로 모여 드는 애니메이션이
+> 일어납니다.
+>
+> 적용 대상 차트 : pie , pieSegment, rose
+
++-----------------------------------------------------------------------+
+| var pie= New DxChartPie(config);                                      |
+|                                                                       |
+| pie.implode();                                                        |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+### explode
+
+> ![스크린샷, 텍스트이(가) 표시된 사진 자동 생성된
+> 설명](media/image65.gif){width="5.383333333333334in"
+> height="2.606032370953631in"}
+>
+> 파이의 각 부분이 중심으로부터 바깥으로 퍼져 나가는 애니메이션이
+> 일어납니다.
+>
+> 적용 대상 차트 : pie , pieSegment, rose , scatter
+
++-----------------------------------------------------------------------+
+| var pie= New DxChartPie(config);                                      |
+|                                                                       |
+| pie.explode()                                                         |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+[]{#_Toc169105309 .anchor}차트 별 effect 종류
+
++---------------+-------------------+--------------------+------------+
+| 차트종류      | effect종류        | drawAni()의        | Default    |
+|               |                   |                    |            |
+|               |                   | 첫번째 파라미터    |            |
++===============+===================+====================+============+
+| activity      | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| bar           | wave              | wave               | grow       |
++---------------+-------------------+--------------------+------------+
+|               | grow              | grow               |            |
++---------------+-------------------+--------------------+------------+
+| bipolar       | wave              | wave               | grow       |
++---------------+-------------------+--------------------+------------+
+|               | grow              | grow               |            |
++---------------+-------------------+--------------------+------------+
+| fuel          | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| funnel        | \-                | \-                 | draw       |
++---------------+-------------------+--------------------+------------+
+| gauge         | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| gantt         | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| hbar          | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+|               | wave              | wave               |            |
++---------------+-------------------+--------------------+------------+
+| horseshoe     | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| hprogress     | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| line          | unfold            | unfold (toBottom)  | w          |
+|               |                   |                    | ave(toTop) |
++---------------+-------------------+--------------------+------------+
+|               | Unfol             | Unf                |            |
+|               | dfromcentertrace  | oldfromcentertrace |            |
+|               |                   | (fromCenter)       |            |
++---------------+-------------------+--------------------+------------+
+|               | foldtocenter      | fold               |            |
+|               |                   | tocenter(toCenter) |            |
++---------------+-------------------+--------------------+------------+
+|               | trace             | trace(toRight)     |            |
++---------------+-------------------+--------------------+------------+
+|               | wave              | wave(toTop)        |            |
++---------------+-------------------+--------------------+------------+
+| meter         | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| odo           | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| pie           | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+|               | explode           | explode            |            |
++---------------+-------------------+--------------------+------------+
+|               | roundrobin        | roundRobin         |            |
++---------------+-------------------+--------------------+------------+
+|               | roun              | ro                 |            |
+|               | dRobinSequential  | undRobinSequential |            |
++---------------+-------------------+--------------------+------------+
+|               | implode           | implode            |            |
++---------------+-------------------+--------------------+------------+
+| pieSegment    | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+|               | explode           | explode            |            |
++---------------+-------------------+--------------------+------------+
+|               | roundrobin        | roundRobin         |            |
++---------------+-------------------+--------------------+------------+
+|               | roun              | ro                 |            |
+|               | dRobinSequential  | undRobinSequential |            |
++---------------+-------------------+--------------------+------------+
+|               | implode           | implode            |            |
++---------------+-------------------+--------------------+------------+
+| radar         | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+|               | trace             | trace              |            |
++---------------+-------------------+--------------------+------------+
+| rose          | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+|               | roundRobin        | roundRobin         |            |
++---------------+-------------------+--------------------+------------+
+|               | implode           | implode            |            |
++---------------+-------------------+--------------------+------------+
+|               | explode           | explode            |            |
++---------------+-------------------+--------------------+------------+
+| rscatter      | \-                |                    | draw       |
++---------------+-------------------+--------------------+------------+
+| scatter       | trace             | trace              | trace      |
++---------------+-------------------+--------------------+------------+
+|               | explode           | explode            |            |
++---------------+-------------------+--------------------+------------+
+| semicir       | grow              | grow               | grow       |
+| cularprogress |                   |                    |            |
++---------------+-------------------+--------------------+------------+
+| segment       | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| thermometer   | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| vprogress     | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| waterfall     | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| org           | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| tree          | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| heatmap       | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| sunburst      | grow              | grow               | grow       |
++---------------+-------------------+--------------------+------------+
+| pyramid       | \-                |                    | draw       |
++---------------+-------------------+--------------------+------------+
+| map           | \-                |                    | draw       |
++---------------+-------------------+--------------------+------------+
+
+# **Multi Chart 생성하기**
+
+### Bar 및 Line 차트
+
+> ![도표, 라인, 그래프, 스크린샷이(가) 표시된 사진 자동 생성된
+> 설명](media/image66.png){width="6.6691207349081365in"
+> height="3.1738517060367455in"}
+
++-----------------------------------------------------------------------+
+| > var bar = new DxChartBar({                                          |
+| >                                                                     |
+| > id: cvs,                                                            |
+| >                                                                     |
+| > elem : canvas,                                                      |
+| >                                                                     |
+| > binddataset : this.Dataset00_00,                                    |
+| >                                                                     |
+| > data:\[\"bind:seoul\",\"bind:busan\",\"bind:daegu\"\],              |
+| >                                                                     |
+| > options: {                                                          |
+| >                                                                     |
+| > margin:{Left:105,Right:55,Top:135,Inner:30,Bottom:82},              |
+| >                                                                     |
+| > xaxis:{                                                             |
+| >                                                                     |
+| > Use:false                                                           |
+| >                                                                     |
+| > ,Labels: \[\'bind:year\'\]                                          |
+| >                                                                     |
+| > ,ScaleZerostart: true                                               |
+| >                                                                     |
+| > ,Color:\"#E2E2E2\"                                                  |
+| >                                                                     |
+| > ,LabelsOffsetY:5                                                    |
+| >                                                                     |
+| > ,Tickmarks:false                                                    |
+| >                                                                     |
+| > },                                                                  |
+| >                                                                     |
+| > colorsStroke: \'white\',                                            |
+| >                                                                     |
+| > linewidth: 2,                                                       |
+| >                                                                     |
+| > shadow:{Offsetx: 1,Offsety: 0,Blur: 1,},                            |
+| >                                                                     |
+| > background:{GridVlines: false,GridBorder: false},                   |
+| >                                                                     |
+| > yaxis:{                                                             |
+| >                                                                     |
+| > Use:false                                                           |
+| >                                                                     |
+| > ,Color:\"#E2E2E2\"                                                  |
+| >                                                                     |
+| > ,LabelsOffsetX:-15                                                  |
+| >                                                                     |
+| > ,Tickmarks:false                                                    |
+| >                                                                     |
+| > ,ScaleMax:50                                                        |
+| >                                                                     |
+| > },                                                                  |
+| >                                                                     |
+| > title: {Text:\'barCombinedLine\',Y :73},                            |
+| >                                                                     |
+| > combinedEffect: \'wave\',                                           |
+| >                                                                     |
+| > //combinedEffectCallback: function () {\$a(\'Finished the bar       |
+| > effect!\')},                                                        |
+| >                                                                     |
+| > combinedEffectOptions: \'{frames: 90}\',                            |
+| >                                                                     |
+| > tooltips: {                                                         |
+| >                                                                     |
+| > Data : \'%{value_formatted}\',                                      |
+| >                                                                     |
+| > Effect : \'fade\',                                                  |
+| >                                                                     |
+| > Pointer : false,                                                    |
+| >                                                                     |
+| > FormattedUnitsPost : \'%\',                                         |
+| >                                                                     |
+| > }                                                                   |
+| >                                                                     |
+| > }                                                                   |
+| >                                                                     |
+| > });                                                                 |
+| >                                                                     |
+| > var line = new DxChartLine({                                        |
+| >                                                                     |
+| > id: cvs,                                                            |
+| >                                                                     |
+| > elem : canvas,                                                      |
+| >                                                                     |
+| > binddataset : this.Dataset00_00,                                    |
+| >                                                                     |
+| > data: \[\'bind:total\'\],                                           |
+| >                                                                     |
+| > options: {                                                          |
+| >                                                                     |
+| > colors:\[\"#6794DC\"\],                                             |
+| >                                                                     |
+| > spline: true,                                                       |
+| >                                                                     |
+| > tickmarksStyle: \'filledcircle\',                                   |
+| >                                                                     |
+| > yaxisScaleMax: 40,                                                  |
+| >                                                                     |
+| > shadow: false,                                                      |
+| >                                                                     |
+| > xaxis: false,                                                       |
+| >                                                                     |
+| > yaxis: false,                                                       |
+| >                                                                     |
+| > combinedEffect: \'trace\',                                          |
+| >                                                                     |
+| > combinedEffectOptions: \'{frames: 90}\',                            |
+| >                                                                     |
+| > tooltips: {                                                         |
+| >                                                                     |
+| > Data : \'%{value}\',                                                |
+| >                                                                     |
+| > Effect : \'fade\',                                                  |
+| >                                                                     |
+| > Pointer : true,                                                     |
+| >                                                                     |
+| > }                                                                   |
+| >                                                                     |
+| > }                                                                   |
+| >                                                                     |
+| > });                                                                 |
+| >                                                                     |
+| > var combo = new DxChart.CombinedChart(bar, line);                   |
+| >                                                                     |
+| > combo.draw();                                                       |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+> 1\. 각각 bar와 Line의 object를 생성합니다.
+>
+> 2\. DxChart.CombinedChart를 통해 margin 값 계산 후 함께 그려집니다.
+
+### Bar 및 Pie 차트
+
+> ![스크린샷, 텍스트, 도표, 그래프이(가) 표시된 사진 자동 생성된
+> 설명](media/image67.png){width="6.690445100612424in"
+> height="3.166751968503937in"}
+
++-----------------------------------------------------------------------+
+| > var bar = new DxChartBar({                                          |
+| >                                                                     |
+| > id: cvs,                                                            |
+| >                                                                     |
+| > elem : canvas,                                                      |
+| >                                                                     |
+| > binddataset : this.Dataset00,                                       |
+| >                                                                     |
+| > data:\[\"bind:child\",\"bind:middle\",\"bind:high\"\],              |
+| >                                                                     |
+| > options: {                                                          |
+| >                                                                     |
+| > margin:{Left:105,Right:55,Top:135,Inner:30,Bottom:82},              |
+| >                                                                     |
+| > title:{Text: \'bar animated Pie chart on a Bar chart\',Y :73},      |
+| >                                                                     |
+| > xaxis:{                                                             |
+| >                                                                     |
+| > Labels: \[\'bind:year\'\]                                           |
+| >                                                                     |
+| > ,ScaleMax:200                                                       |
+| >                                                                     |
+| > ,Color:\"#E2E2E2\"                                                  |
+| >                                                                     |
+| > ,LabelsOffsetY:5                                                    |
+| >                                                                     |
+| > ,Tickmarks:false                                                    |
+| >                                                                     |
+| > },                                                                  |
+| >                                                                     |
+| > yaxis:{                                                             |
+| >                                                                     |
+| > Use:false                                                           |
+| >                                                                     |
+| > ,Color:\"#E2E2E2\"                                                  |
+| >                                                                     |
+| > ,LabelsOffsetX:-15                                                  |
+| >                                                                     |
+| > ,Tickmarks:false                                                    |
+| >                                                                     |
+| > },                                                                  |
+| >                                                                     |
+| > colorsStroke: \'rgba(0,0,0,0)\',                                    |
+| >                                                                     |
+| > background:{GridVlines: false,},                                    |
+| >                                                                     |
+| > }                                                                   |
+| >                                                                     |
+| > }).draw();                                                          |
+| >                                                                     |
+| > var pie = new DxChartPie({                                          |
+| >                                                                     |
+| > id: cvs,                                                            |
+| >                                                                     |
+| > elem : canvas,                                                      |
+| >                                                                     |
+| > binddataset : this.Dataset00,                                       |
+| >                                                                     |
+| > data:\[\"bind:pieValue\"\],                                         |
+| >                                                                     |
+| > options: {                                                          |
+| >                                                                     |
+| > center:{x: 120, y: bar.get(\'marginTop\')},                         |
+| >                                                                     |
+| > radius: 25,                                                         |
+| >                                                                     |
+| > exploded: \[5\],                                                    |
+| >                                                                     |
+| > colorsStroke: \'rgba(0,0,0,0)\',                                    |
+| >                                                                     |
+| > colorsStroke: \'#fff\',                                             |
+| >                                                                     |
+| > shadow: false,                                                      |
+| >                                                                     |
+| > linewidth: 1                                                        |
+| >                                                                     |
+| > }                                                                   |
+| >                                                                     |
+| > }).roundRobin({frames: 60});                                        |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+> 1\. 각각 bar와 pie의 object를 생성합니다.
+>
+> 2\. DxChart.CombinedChart를 사용하지 않고 margin 값으로 설정하여 함께
+> 생성하였습니다.
+
+# **기타기능**
+
+### convertDataset
+
+> DataSet을 배열로 반환하는 메서드입니다. bind로 개발 시 어려울 때
+> 유용하게 사용가능합니다.
+
+  -----------------------------------------------------------------------
+  함수명           Argument     Type       설명
+  ---------------- ------------ ---------- ------------------------------
+  ConvertDataset   dataset      Object     Dataset object
+
+                   arrCol       Array      변환할 데이터셋 컬럼 명
+
+                   nDiv         Number     (옵션) 반복 행 설정
+
+                   Option       String     (옵션) "linear" 설정 시 컬럼
+                                           별 데이터 생성
+  -----------------------------------------------------------------------
+
+> 예시) Dataset00
+>
+> ![텍스트, 스크린샷, 소프트웨어, 멀티미디어 소프트웨어이(가) 표시된
+> 사진 자동 생성된 설명](media/image68.png){width="3.2955566491688537in"
+> height="2.567296587926509in"}
+>
+> 예시 1) linear 미설정 시
+
+  ----------------------------------------------------------------------------------------------
+  var arrData =
+  DxChart.convertDataset(this.Dataset00,\[\"bind:Column0\",\"bind:Column1\","bind:Column2"\]);
+  ----------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+> ![텍스트, 스크린샷, 소프트웨어, 멀티미디어 소프트웨어이(가) 표시된
+> 사진 자동 생성된 설명](media/image68.png){width="3.2955566491688537in"
+> height="2.567296587926509in"}
+
+**결과값**
+
+arrData =\[\[가,나,다\],\[라,마,바\],\[사,아,자\]\]
+
+> 예시 2) linear 설정 시
+
+  -------------------------------------------------
+  var arrData = DxChart.convertDataset(this.
+  Dataset00,\[\"bind:Column0\",\"bind:Column1\","
+  bind:Column2"\],null,\"linear\");
+  -------------------------------------------------
+
+------------------------------------------------------------------------
+
+> ![텍스트, 스크린샷, 소프트웨어, 멀티미디어 소프트웨어이(가) 표시된
+> 사진 자동 생성된 설명](media/image68.png){width="3.2955566491688537in"
+> height="2.567296587926509in"}
+
+**결과값**
+
+arrData =\[\[가,라,사\],\[나,마,아\],\[다,바,자\]\]
+
+### datachangeevent
+
+기존 Chart에 Bindding 되어있는 Dataset의 값이 변경 되었을 때 차트에 바로
+적용해주는 속성입니다.
+
+  -----------------------------------------------------------------------------
+  property          Sub        설명                          타입      기본값
+                    Property                                           
+  ----------------- ---------- ----------------------------- --------- --------
+  datachangeevent   Use        Datachangeevent를 사용할 지   Boolean   null
+                               여부입니다.                             
+
+                    Effect     Datachangeevent 발생 시       string    draw
+                               Chart의 Effect를 설정합니다.            
+  -----------------------------------------------------------------------------
+
++-----------------------------------------------------------------------+
+| > var bar = new DxChartBar({                                          |
+| >                                                                     |
+| > id: cvs,                                                            |
+| >                                                                     |
+| > elem : canvas,                                                      |
+| >                                                                     |
+| > binddataset : this.Dataset00,                                       |
+| >                                                                     |
+| > data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],                |
+| >                                                                     |
+| > datachangeevent:{                                                   |
+|                                                                       |
+| Use:true // datachangeevent 사용 설정합니다.                          |
+|                                                                       |
+| > ,Effect:\"draw\" // datachangeevent 발생 시 Effect를 설정합니다.    |
+| >                                                                     |
+| > },                                                                  |
+| >                                                                     |
+| > options: {// 기존 예제와 동일합니다.}                               |
+| >                                                                     |
+| > }).wave();                                                          |
++=======================================================================+
+|                                                                       |
++-----------------------------------------------------------------------+
+
+
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: auto; /* 테이블을 가운데 정렬 */
+    }
+    th, td {
+        border: 1px solid black;
+        text-align: center; /* 텍스트를 가운데 정렬 */
+        padding: 10px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+

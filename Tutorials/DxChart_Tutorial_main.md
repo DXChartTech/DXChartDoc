@@ -19,14 +19,17 @@
 
  [**2.** **DxChart 속성**](DxChart속성/DxChart_속성.md##DxChart-속성)
    - [Margin (옵션 - margin 그룹)](#margin-옵션---margin-그룹)
-   - [X축 (옵션 - xaxis 그룹)](#text-property-예제)
+   - [Margin Property 예제](#margin-사용-예제)
+   - [Text Property 예제](#text-property-예제)
+   - [제목 (옵션 - title 그룹)](#제목-옵션-title-그룹)
+   - [X축 (옵션 - xaxis 그룹)](#x축-옵션-xaxis-그룹)
    - [Y축 (옵션 - yaxis 그룹)](#y축-옵션-yaxis-그룹)
    - [배경 (옵션 - background 그룹)](#\_Toc162962562)
-   - [제목 (옵션 - title 그룹)](#제목-옵션-title-그룹)
    - [범례](#_Toc162962564)
    - [툴팁](#_Toc162962565)
    - [라벨 (옵션 - labels 그룹)](#\_Toc162962566)
    - [그외](#_Toc162962570)
+
 
 [**3.** **차트의 주요 메소드**](DxChart기타기능/DxChart_기타기능.md##차트의-주요-메소드)
 
