@@ -2014,494 +2014,372 @@ var bar = new DxChartBar({
 </table>
 
 ---
+```javascript
+// ① 범례 예제
+// Basic예제와 동일합니다
 
-+-----------------------------------+----------------------------------+
-| **① 범례 예제**                   | **② 범례 예제**                  |
-+===================================+==================================+
-| // Basic예제와 동일합니다         | // Basic예제와 동일합니다        |
-|                                   |                                  |
-| options: {                        | options: {                       |
-|                                   |                                  |
-| key: {                            | key: {                           |
-|                                   |                                  |
-| Data :                            | Data :                           |
-| \[\'종합\',\'남자\',\'여자\'\]    | \[\'종합\',\'남자\',\'여자\'\]   |
-|                                   |                                  |
-| // Position을 margin으로          | // Position을 \'graph\'으로      |
-| 설정합니다.                       | 설정합니다.                      |
-|                                   |                                  |
-| ,Position :\'margin\'             | ,Position :\'graph\'             |
-|                                   |                                  |
-| ,PositionMarginHSpace: 15 // 범례 | // 범례의 테두리 색상을          |
-| 안 수평 여백                      | 설정합니다.                      |
-|                                   |                                  |
-| // Y축 위치 설정                  | ,BorderColor:\"#E2E2E2\"         |
-|                                   |                                  |
-| ,PositionY:(canvas.offsetHeight - | }                                |
-| 20) - 15                          |                                  |
-|                                   | },                               |
-| }                                 |                                  |
-|                                   |                                  |
-| },                                |                                  |
-+-----------------------------------+----------------------------------+
+options: {
+    key: {
+        Data: ['종합', '남자', '여자'],
+        // Position을 margin으로 설정합니다.
+        Position: 'margin',
+        PositionMarginHSpace: 15, // 범례 안 수평 여백
+        // Y축 위치 설정
+        PositionY: (canvas.offsetHeight - 20) - 15
+    }
+}
+```
+```javascript
+// ② 범례 예제
+// Basic예제와 동일합니다
+
+options: {
+    key: {
+        Data: ['종합', '남자', '여자'],
+        // Position을 'graph'으로 설정합니다.
+        Position: 'graph',
+        // 범례의 테두리 색상을 설정합니다.
+        BorderColor: "#E2E2E2"
+    }
+}
+```
 
 ### 툴팁 설정하기
 
  ![ToolTip](../../assets/img/image53.png)
 
-  -----------------------------------------------------------------------------
-  Sub property              설명                        타입      기본값
-  ------------------------- --------------------------- --------- -------------
-  Css                       툴팁의 CSS를 지정합니다.    object    null
-                            지정할 수 있는 CSS는 color,           
-                            backgroundColor, fontSize,            
-                            fontFamily 등이 있습니다.             
+<table style="border-collapse: collapse; width: 80%; margin: auto;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">Sub property</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">설명</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">타입</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Css</td>
+      <td style="border: 1px solid black; padding: 10px;">툴팁의 CSS를 지정합니다. 지정할 수 있는 CSS는 color, backgroundColor, fontSize, fontFamily 등이 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Data</td>
+      <td style="border: 1px solid black; padding: 10px;">툴팁에 보여줄 데이터를 지정합니다. '%{key}', '%{value}', html 태그와 %prop, %property 등을 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Effect</td>
+      <td style="border: 1px solid black; padding: 10px;">툴팁의 효과를 지정합니다. slide, fade를 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">slide</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Event</td>
+      <td style="border: 1px solid black; padding: 10px;">툴팁을 발생시키는 이벤트를 지정합니다. onclick, onmousemove 를 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">onmousemove</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedDecimals</td>
+      <td style="border: 1px solid black; padding: 10px;">%{value_formatted}처럼 형식이 지정된 툴팁을 사용할 때 소수점 이하 자릿수를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">number</td>
+      <td style="border: 1px solid black; padding: 10px;">0</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedKeyColors</td>
+      <td style="border: 1px solid black; padding: 10px;">%{key}처럼 형식이 지정된 툴팁을 사용할 때 %{key}부분에 표시되는 색상을 지정할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedKeyColorsShape</td>
+      <td style="border: 1px solid black; padding: 10px;">%{Key}처럼 형식이 지정된 툴팁을 사용할 때 %{key}부분에 표시되는 모양을 지정할 수 있습니다. circle, square를 사용가능합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">square</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedKeyLabels</td>
+      <td style="border: 1px solid black; padding: 10px;">%{key}처럼 형식이 지정된 툴팁을 사용할 때 %{key}부분에 표시되는 라벨을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">[]</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedListItems</td>
+      <td style="border: 1px solid black; padding: 10px;">Data에 %{list}를 사용할 때, 리스트로 표시될 아이템을 지정합니다. 2차원 배열을 사용하거나 DxChart.convertDataset을 사용할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedListType</td>
+      <td style="border: 1px solid black; padding: 10px;">Data에 %{list}를 사용할 때, 리스트에서 표시될 아이템의 정렬을 지정합니다. ul, ol이 사용 가능합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">ul</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedPoint</td>
+      <td style="border: 1px solid black; padding: 10px;">%{value_formatted}처럼 형식이 지정된 툴팁에서 소수점 표시 방식을 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedTableData</td>
+      <td style="border: 1px solid black; padding: 10px;">툴팁의 형식을 테이블의 형태로 지정합니다. 3차원 배열을 사용해야 합니다. 데이터 예시는 첫번째 데이터셋의 첫번째 데이터 툴팁입니다. 같은 방법으로 n번째 테이블 툴팁을 지정할 수 있으며, 첫 번째 데이터셋의 데이터 개수만큼 배열이 작성된 후 추가 배열부터는 첫번째 데이터셋의 두번째 데이터 툴팁으로 넘어갑니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedTableHeaders</td>
+      <td style="border: 1px solid black; padding: 10px;">툴팁 테이블을 사용할 때, 테이블의 헤더를 지정할 수 있습니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">object</td>
+      <td style="border: 1px solid black; padding: 10px;">null</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedThousand</td>
+      <td style="border: 1px solid black; padding: 10px;">%{value_formatted}처럼 형식이 지정된 툴팁에서 천 단위 구분 기호를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;">,</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedUnitsPost</td>
+      <td style="border: 1px solid black; padding: 10px;">%{value_formatted}처럼 형식이 지정된 툴팁에서 뒤에 표시할 문자를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">FormattedUnitsPre</td>
+      <td style="border: 1px solid black; padding: 10px;">%{value_formatted}처럼 형식이 지정된 툴팁에서 앞에 표시할 문자를 지정합니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">string</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">Highlight</td>
+      <td style="border: 1px solid black; padding: 10px;">툴팁이 표시될 때 강조 효과를 사용할 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">HotspotXonly</td>
+      <td style="border: 1px solid black; padding: 10px;">데이터 포인트의 Y좌표가 0인 X축에 가까이 가면 해당 데이터 포인트에 툴팁이 뜰 지 여부입니다.</td>
+      <td style="border: 1px solid black; padding: 10px;">boolean</td>
+      <td style="border: 1px solid black; padding: 10px;">FALSE</td>
+    </tr>
+  </tbody>
+</table>
 
-  Data                      툴팁에 보여줄 데이터를      object    null
-                            지정합니다. \'%{key}\',               
-                            \'%{value}\',html 태그와              
-                            %prop, %property 등을                 
-                            사용할 수 있습니다.                   
 
-  Effect                    툴팁의 효과를               string    slide
-                            지정합니다. slide, fade를             
-                            사용할 수 있습니다.                   
 
-  Event                     툴팁을 발생시키는 이벤트를  string    onmousemove
-                            지정합니다. onclick,                  
-                            onmousemove 를 사용할 수              
-                            있습니다.                             
-
-  FormattedDecimals         %{value_formatted}처럼      number    0
-                            형식이 지정된 툴팁을 사용할           
-                            때 소수점 이하 자릿수를               
-                            지정합니다.                           
-
-  FormattedKeyColors        %{key}처럼 형식이 지정된    object    null
-                            툴팁을 사용할 때                      
-                            %{key}부분에 표시되는                 
-                            색상을 지정할 수 있습니다.            
-
-  FormattedKeyColorsShape   %{Key}처럼 형식이 지정된    string    square
-                            툴팁을 사용할 때                      
-                            %{key}부분에 표시되는                 
-                            모양을 지정할 수 있습니다.            
-                            circle, square를                      
-                            사용가능합니다.                       
-
-  FormattedKeyLabels        %{key}처럼 형식이 지정된    object    \[\]
-                            툴팁을 사용할 때                      
-                            %{key}부분에 표시되는                 
-                            라벨을 지정합니다.                    
-
-  FormattedListItems        Data에 %{list}를 사용할 때, object    null
-                            리스트로 표시될 아이템을              
-                            지정합니다. 2차원 배열을              
-                            사용하거나                            
-                            DxChart.convertDataset을              
-                            사용할 수 있습니다.                   
-
-  FormattedListType         Data에 %{list}를 사용할 때, string    ul
-                            리스트에서 표시될 아이템의            
-                            정렬을 지정합니다. ul,ol이            
-                            사용 가능합니다.                      
-
-  FormattedPoint            %{value_formatted}처럼      string    .
-                            형식이 지정된 툴팁에서                
-                            소수점 표시 방식을                    
-                            지정합니다.                           
-
-  FormattedTableData        툴팁의 형식을 테이블의      object    null
-                            형태로 지정합니다. 3차원              
-                            배열을 사용해야 합니다.               
-                            데이터 예시는 첫번째                  
-                            데이터셋의 첫번째 데이터              
-                            툴팁입니다. 같은 방법으로             
-                            n번째 테이블 툴팁을 지정할            
-                            수 있으며, 첫 번째                    
-                            데이터셋의 데이터 개수만큼            
-                            배열이 작성된 후 추가                 
-                            배열부터는 첫번째                     
-                            데이터셋의 두번째 데이터              
-                            툴팁으로 넘어갑니다.                  
-
-  FormattedTableHeaders     툴팁 테이블을 사용할 때,    object    null
-                            테이블의 헤더를 지정할 수             
-                            있습니다.                             
-
-  FormattedThousand         %{value_formatted}처럼      string    ,
-                            형식이 지정된 툴팁에서 천             
-                            단위 구분 기호를                      
-                            지정합니다.                           
-
-  FormattedUnitsPost        %{value_formatted}처럼      string    
-                            형식이 지정된 툴팁에서 뒤에           
-                            표시할 문자를 지정합니다.             
-
-  FormattedUnitsPre         %{value_formatted}처럼      string    
-                            형식이 지정된 툴팁에서 앞에           
-                            표시할 문자를 지정합니다.             
-
-  Highlight                 툴팁이 표시될 때 강조       boolean   TRUE
-                            효과를 사용할 지                      
-                            여부입니다.                           
-
-  HotspotXonly              데이터 포인트의 Y좌표가 0인 boolean   FALSE
-                            X축에 가까이 가면 해당                
-                            데이터 포인트에 툴팁이 뜰             
-                            지 여부입니다.                        
-  -----------------------------------------------------------------------------
+-----
 
 Tooltip의 데이터를 표시하기 위해 사용하는 macro종류
 
-+-------------+--------------------------------------------------------+
-| macro       | 설명                                                   |
-+=============+========================================================+
-| %{index}    | 여러 개의 차트를 사용할 경우, 차트의 index             |
-|             |                                                        |
-|             | (0부터 시작)                                           |
-+-------------+--------------------------------------------------------+
-| %{dataset}  | 하나의 차트에서 선택/지정할 데이터의 index             |
-|             |                                                        |
-|             | (0부터 시작)                                           |
-+-------------+--------------------------------------------------------+
-| %{dataset2} | bioplar차트에서 사용                                   |
-|             |                                                        |
-|             | 왼쪽/오른쪽별로 번호를 부여                            |
-|             |                                                        |
-|             | -   dataset은 왼쪽부터 0\~n으로 번호 부여한 후         |
-|             |     오른쪽은 n+1\~2n으로 번호를 부여되지만, dataset2는 |
-|             |     왼쪽부터0\~n으로 번호 부여한 후 오른쪽은 다시      |
-|             |     0\~n으로 번호 부여                                 |
-+-------------+--------------------------------------------------------+
-| %{seq}      | 차트가 여러 개인 경우, 전체를 하나의 index로 처리 할   |
-|             | 경우의 데이터index                                     |
-| %{sequen    |                                                        |
-| tial_index} | (0부터 시작)                                           |
-+-------------+--------------------------------------------------------+
-| %{prop      | 차트의 타이틀 텍스트 (option의 title에 해당 )          |
-| erty:title} |                                                        |
-+-------------+--------------------------------------------------------+
-| %{          | 선택한 X축 라벨을 표시합니다.                          |
-| property:xa |                                                        |
-| xisLabels\[ |                                                        |
-| %{index}\]} |                                                        |
-+-------------+--------------------------------------------------------+
-| %{globa     | global로 정의한 데이터를 표시.                         |
-| l:contries} |                                                        |
-|             | (nexacro에서는 사용할 수 없습니다.%{property:xxx}를    |
-| %{global    | 사용하여 같은 효과를 낼 수 있습니다.)                  |
-| :contries\[ |                                                        |
-| %{index}\]} |                                                        |
-|             |                                                        |
-| %{global:c  |                                                        |
-| ontries\[%{ |                                                        |
-| dataset}\]} |                                                        |
-+-------------+--------------------------------------------------------+
-| %{value}    | 선택된 데이터 값                                       |
-|             |                                                        |
-| %{value2}   | vaue : 원래의 값 그대로를 표시합니다.(123456)          |
-|             |                                                        |
-| %{value     | value_formatted : 숫자인 경우 format(123,456 형식)을   |
-| \           | 적용하여 표시합니다.                                   |
-| _formatted} |                                                        |
-+-------------+--------------------------------------------------------+
-| %{percent}  | 100% 차트인 경우, 해당 값에 대한 %비율을 표시          |
-|             |                                                        |
-| %{percent   |                                                        |
-| \           |                                                        |
-| _formatted} |                                                        |
-+-------------+--------------------------------------------------------+
-| %{side}     | bipolar차트인 경우 , 오른쪽/왼쪽의 데이터여부를 표시   |
-|             |                                                        |
-| %{          | side : 0(왼쪽) / 1(오른쪽)                             |
-| side_title} |                                                        |
-|             | side_title : "left"(왼쪽) , "right"(오른쪽)            |
-+-------------+--------------------------------------------------------+
-| %{start}    | Gantt차트에서 사용하는 데이터값                        |
-|             |                                                        |
-| %{end}      | start : Data의 start값                                 |
-|             |                                                        |
-| %{duration} | end : Data의 end 값                                    |
-|             |                                                        |
-| %{complete} | duration : Data의 duration 값                          |
-|             |                                                        |
-| %{label}    | complete : Data의 complete 값                          |
-|             |                                                        |
-|             | label : data의 label값                                 |
-|             |                                                        |
-|             | 사용예)                                                |
-|             |                                                        |
-|             | binddataset : this.Dataset00,                          |
-|             |                                                        |
-|             | data: \'bind:start=start,bind:end=end,                 |
-|             | bind:complete=complete,bind:label=label,bind:linewidth |
-|             | =linewidth,bind:color=color,bind:bgcolor=background\', |
-|             |                                                        |
-|             | option : {                                             |
-|             |                                                        |
-|             | tooltips : {Data : \'%{label}\<br\>START:              |
-|             | %{start}\<br\>END: %{end}\<br\>COMPLETE:               |
-|             | %{complete}\'}                                         |
-|             |                                                        |
-|             | }                                                      |
-|             |                                                        |
-|             | }                                                      |
-+-------------+--------------------------------------------------------+
-| %{table}    | HTML의 table태그의 값                                  |
-|             |                                                        |
-|             | FormattedTableData에 설정된 데이터를 표시합니다.       |
-|             |                                                        |
-|             | 해당 형식은 nexacro인 경우는 2차원 array형태,          |
-|             |                                                        |
-|             | HTML인 경우 table tag의 아이디                         |
-+-------------+--------------------------------------------------------+
-| %{group}    | %{dataset}%{dataset2}와 동일                           |
-|             |                                                        |
-| %{group2}   |                                                        |
-+-------------+--------------------------------------------------------+
-| %{list}     | HTML의 list태그의 값                                   |
-|             |                                                        |
-|             | FormattedListItem에 설정된 데이터를 표시합니다.        |
-|             |                                                        |
-|             | 해당 형식은 nexacro인 경우는 2차원 array형태,          |
-|             |                                                        |
-|             | HTML인 경우 list tag의 아이디                          |
-|             |                                                        |
-|             | 사용예)                                                |
-|             |                                                        |
-|             | tooltips:{Data:\'\<h2\>Results\</h2\> %{list}\',       |
-|             |                                                        |
-|             | Effect: \'none\',                                      |
-|             |                                                        |
-|             | FormattedListType: \'ol\',                             |
-|             |                                                        |
-|             | FormattedListItems: \[                                 |
-|             |                                                        |
-|             | \[\'Barry\',\'Larry\',\'Harry\'\],                     |
-|             |                                                        |
-|             | \[\'Bill\',\'Lil\',\'Jill\'\],                         |
-|             |                                                        |
-|             | \[\'Jack\',\'Zak\',\'Quack\'\]                         |
-|             |                                                        |
-|             | \],                                                    |
-|             |                                                        |
-|             | Event:\"onclick\"                                      |
-|             |                                                        |
-|             | },                                                     |
-+-------------+--------------------------------------------------------+
-| %{func      | 지정한 함수를 실행하고 그 결과를 표시합니다.           |
-| tion:xxx()} |                                                        |
-|             | -   함수는 반드시 리턴값이 있어야 하며,                |
-|             |     String,number값이어야 합니다.                      |
-|             |                                                        |
-|             | -   사용할 수 있는 함수                                |
-|             |                                                        |
-|             |     \- javascript 고유 함수                            |
-|             |                                                        |
-|             |     \- DxChart오브젝트의 메소드 함수                   |
-|             |                                                        |
-|             |     \- Nexacro의 사용자 함수                           |
-+-------------+--------------------------------------------------------+
-| %{custom}   | FormattedCustom에 지정된 함수를 실행합니다.            |
-|             |                                                        |
-|             | 파라미터는 specific이며, 각 차트마다 다르게 세팅이     |
-|             | 됩니다.                                                |
-|             |                                                        |
-|             | 사용예)                                                |
-|             |                                                        |
-|             | tooltips:{                                             |
-|             |                                                        |
-|             | Data:\'%{custom}\',//\'%{value}\',                     |
-|             |                                                        |
-|             | Css: {fontSize: \'14pt\'},                             |
-|             |                                                        |
-|             | FormattedCustom : function(specific) {                 |
-|             |                                                        |
-|             | var item = specific.object.getItem(specific.index);    |
-|             |                                                        |
-|             | return {                                               |
-|             |                                                        |
-|             | label : item.name + \" Airport\<br\>\"                 |
-|             |                                                        |
-|             | \+ \"Code:\" + item.abbrev                             |
-|             |                                                        |
-|             | };                                                     |
-|             |                                                        |
-|             | }                                                      |
-|             |                                                        |
-|             | }                                                      |
-+-------------+--------------------------------------------------------+
+<table style="border-collapse: collapse; width: 80%; margin: auto;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">macro</th>
+      <th style="border: 1px solid black; padding: 10px; text-align: center; background-color: #f2f2f2;">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{index}</td>
+      <td style="border: 1px solid black; padding: 10px;">여러 개의 차트를 사용할 경우, 차트의 index<br>(0부터 시작)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{dataset}</td>
+      <td style="border: 1px solid black; padding: 10px;">하나의 차트에서 선택/지정할 데이터의 index<br>(0부터 시작)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{dataset2}</td>
+      <td style="border: 1px solid black; padding: 10px;">bioplar차트에서 사용<br>왼쪽/오른쪽별로 번호를 부여<br>- dataset은 왼쪽부터 0~n으로 번호 부여한 후 오른쪽은 n+1~2n으로 번호를 부여되지만, dataset2는 왼쪽부터0~n으로 번호 부여한 후 오른쪽은 다시 0~n으로 번호 부여</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{seq}</td>
+      <td style="border: 1px solid black; padding: 10px;">차트가 여러 개인 경우, 전체를 하나의 index로 처리 할 경우의 데이터index<br>(0부터 시작)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{sequential_index}</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{property:title}</td>
+      <td style="border: 1px solid black; padding: 10px;">차트의 타이틀 텍스트 (option의 title에 해당)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{property:xa axisLabels[%{index}]}</td>
+      <td style="border: 1px solid black; padding: 10px;">선택한 X축 라벨을 표시합니다.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{global:contries}</td>
+      <td style="border: 1px solid black; padding: 10px;">global로 정의한 데이터를 표시.<br>(nexacro에서는 사용할 수 없습니다.%{property:xxx}를 사용하여 같은 효과를 낼 수 있습니다.)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{global:contries[%{index}]}</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{global:contries[%{dataset}]}</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{value}</td>
+      <td style="border: 1px solid black; padding: 10px;">선택된 데이터 값</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{value2}</td>
+      <td style="border: 1px solid black; padding: 10px;">vaue : 원래의 값 그대로를 표시합니다.(123456)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{value_formatted}</td>
+      <td style="border: 1px solid black; padding: 10px;">value_formatted : 숫자인 경우 format(123,456 형식)을 적용하여 표시합니다.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{percent}</td>
+      <td style="border: 1px solid black; padding: 10px;">100% 차트인 경우, 해당 값에 대한 %비율을 표시</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{percent_formatted}</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{side}</td>
+      <td style="border: 1px solid black; padding: 10px;">bipolar차트인 경우 , 오른쪽/왼쪽의 데이터여부를 표시<br>side : 0(왼쪽) / 1(오른쪽)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{side_title}</td>
+      <td style="border: 1px solid black; padding: 10px;">side_title : "left"(왼쪽) , "right"(오른쪽)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{start}</td>
+      <td style="border: 1px solid black; padding: 10px;">Gantt차트에서 사용하는 데이터값</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{end}</td>
+      <td style="border: 1px solid black; padding: 10px;">start : Data의 start값</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{duration}</td>
+      <td style="border: 1px solid black; padding: 10px;">end : Data의 end 값</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{complete}</td>
+      <td style="border: 1px solid black; padding: 10px;">duration : Data의 duration 값</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{label}</td>
+      <td style="border: 1px solid black; padding: 10px;">complete : Data의 complete 값<br>label : data의 label값<br>사용예)<br>binddataset : this.Dataset00,<br>data: 'bind:start=start,bind:end=end,bind:complete=complete,bind:label=label,bind:linewidth=linewidth,bind:color=color,bind:bgcolor=background',<br>option : {tooltips : {Data : '%{label}<br>START: %{start}<br>END: %{end}<br>COMPLETE: %{complete}'}}</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{table}</td>
+      <td style="border: 1px solid black; padding: 10px;">HTML의 table태그의 값<br>FormattedTableData에 설정된 데이터를 표시합니다.<br>해당 형식은 nexacro인 경우는 2차원 array형태,<br>HTML인 경우 table tag의 아이디</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{group}</td>
+      <td style="border: 1px solid black; padding: 10px;">%{dataset}%{dataset2}와 동일</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{group2}</td>
+      <td style="border: 1px solid black; padding: 10px;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{list}</td>
+      <td style="border: 1px solid black; padding: 10px;">HTML의 list태그의 값<br>FormattedListItem에 설정된 데이터를 표시합니다.<br>해당 형식은 nexacro인 경우는 2차원 array형태,<br>HTML인 경우 list tag의 아이디<br>사용예)<br>tooltips:{Data:'<h2>Results</h2> %{list}',Effect: 'none',FormattedListType: 'ol',FormattedListItems: [ ['Barry','Larry','Harry'], ['Bill','Lil','Jill'], ['Jack','Zak','Quack'] ], Event:"onclick"}</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{function:xxx()}</td>
+      <td style="border: 1px solid black; padding: 10px;">지정한 함수를 실행하고 그 결과를 표시합니다.<br>- 함수는 반드시 리턴값이 있어야 하며, String,number값이어야 합니다.<br>- 사용할 수 있는 함수<br>- javascript 고유 함수<br>- DxChart오브젝트의 메소드 함수<br>- Nexacro의 사용자 함수</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 10px;">%{custom}</td>
+      <td style="border: 1px solid black; padding: 10px;">FormattedCustom에 지정된 함수를 실행합니다.<br>파라미터는 specific이며, 각 차트마다 다르게 세팅이 됩니다.<br>사용예)<br>tooltips:{Data:'%{custom}',//'%{value}',Css: {fontSize: '14pt'},FormattedCustom : function(specific) {var item = specific.object.getItem(specific.index);return {label : item.name + " Airport<br>"+ "Code:" + item.abbrev};}}</td>
+    </tr>
+  </tbody>
+</table>
+
 
 #### 툴팁 유형 1
 
-![스크린샷, 텍스트, 도표, 라인이(가) 표시된 사진 자동 생성된
-설명](media/image53.png){width="7.151025809273841in"
-height="3.5172364391951008in"}
+![Tooltip1](../../assets/img/image53.png)
 
-+-----------------------------------------------------------------------+
-| var bar = new DxChartBar({                                            |
-|                                                                       |
-| id: cvs,                                                              |
-|                                                                       |
-| elem : canvas,                                                        |
-|                                                                       |
-| binddataset : this.Dataset00,                                         |
-|                                                                       |
-| data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],                  |
-|                                                                       |
-| options: {                                                            |
-|                                                                       |
-| //기본적인 설정은 Basic예제와 동일합니다                              |
-|                                                                       |
-| tooltips: {                                                           |
-|                                                                       |
-| Data : \'%{key}\', // Data 값을 "%{key}" 설정 시 범례 형태로          |
-| 표시됩니다.                                                           |
-|                                                                       |
-| FormattedUnitsPost: \'명\', // 뒤에 붙일 문자열을 설정합니다.         |
-|                                                                       |
-| Effect : \'fade\', // Tooltips의 효과를 설정합니다.                   |
-|                                                                       |
-| Pointer : true, // Tooltips의 포인터를 설정합니다.                    |
-|                                                                       |
-| FormattedKeyLabels: \[\'종합\',\'남자\',\'여자\'\], // Tooltips의 key |
-| 레이블을 추가합니다.설정합니다.                                       |
-|                                                                       |
-| },                                                                    |
-|                                                                       |
-| }                                                                     |
-|                                                                       |
-| }                                                                     |
-|                                                                       |
-| }).draw();                                                            |
-+=======================================================================+
-|                                                                       |
-+-----------------------------------------------------------------------+
+```javascript
+var bar = new DxChartBar({
+  id: cvs,
+  elem: canvas,
+  binddataset: this.Dataset00,
+  data: ["bind:total", "bind:man", "bind:woman"],
+  options: {
+    // 기본적인 설정은 Basic예제와 동일합니다
+    tooltips: {
+      Data: '%{key}', // Data 값을 "%{key}" 설정 시 범례 형태로 표시됩니다.
+      FormattedUnitsPost: '명', // 뒤에 붙일 문자열을 설정합니다.
+      Effect: 'fade', // Tooltips의 효과를 설정합니다.
+      Pointer: true, // Tooltips의 포인터를 설정합니다.
+      FormattedKeyLabels: ['종합', '남자', '여자'], // Tooltips의 key 레이블을 추가합니다.
+    },
+  },
+}).draw();
+```
 
 #### 툴팁 유형 2
 
-![스크린샷, 도표, 그래프, 라인이(가) 표시된 사진 자동 생성된
-설명](media/image54.png){width="7.30595363079615in"
-height="3.3129636920384953in"}
+![Tooltip2](../../assets/img/image54.png)
 
-+-----------------------------------------------------------------------+
-| var bar = new DxChartBar({                                            |
-|                                                                       |
-| id: cvs,                                                              |
-|                                                                       |
-| elem : canvas,                                                        |
-|                                                                       |
-| binddataset : this.Dataset00,                                         |
-|                                                                       |
-| data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],                  |
-|                                                                       |
-| options: {                                                            |
-|                                                                       |
-| //기본적인 설정은 Basic예제와 동일합니다                              |
-|                                                                       |
-| tooltips: {                                                           |
-|                                                                       |
-| // Html 태그를 삽입하고 매크로를 통해 표시합니다                      |
-|                                                                       |
-| // Gender는 해당 key 값, value는 해당 데이터 값입니다.                |
-|                                                                       |
-| Data:\'\<span st                                                      |
-| yle=\"color:#ccc\"\>\[%{property:gender\[%{index}\]}\]:\</span\>\<b\> |
-| %{value}}명 \</b\>},                                                  |
-|                                                                       |
-| gender : \[\'종합\',\'남자\',\'여자\'\], // 사용가 설정한 property로  |
-| tootltip 데이터를 호출합니다.                                         |
-|                                                                       |
-| },                                                                    |
-|                                                                       |
-| }                                                                     |
-|                                                                       |
-| }                                                                     |
-|                                                                       |
-| }).draw();                                                            |
-+=======================================================================+
-|                                                                       |
-+-----------------------------------------------------------------------+
+```javascript
+var bar = new DxChartBar({
+  id: cvs,
+  elem: canvas,
+  binddataset: this.Dataset00,
+  data: ["bind:total", "bind:man", "bind:woman"],
+  options: {
+    // 기본적인 설정은 Basic예제와 동일합니다
+    tooltips: {
+      // Html 태그를 삽입하고 매크로를 통해 표시합니다
+      // Gender는 해당 key 값, value는 해당 데이터 값입니다.
+      Data: '<span style="color:#ccc">[%{property:gender[%{index}]}]:</span><b>%{value}명 </b>',
+      gender: ['종합', '남자', '여자'], // 사용가 설정한 property로 tootltip 데이터를 호출합니다.
+    },
+  },
+}).draw();
+```
 
 1.  툴팁 유형3
 
-    ![텍스트, 스크린샷, 도표, 그래프이(가) 표시된 사진 자동 생성된
-    설명](media/image55.png){width="7.292749343832021in"
-    height="2.69458552055993in"}
+    ![Tooltip3](../../assets/img/image55.png)
 
-+-----------------------------------------------------------------------+
-| var strHtml = \"\";                                                   |
-|                                                                       |
-| strHtml += \'A summary of the template options that are available to  |
-| you.\<p /\>\';                                                        |
-|                                                                       |
-| strHtml += \'\<table border=\"1\" align=\"center\"                    |
-| cellspacing=\"0\"\>\';                                                |
-|                                                                       |
-| strHtml +=                                                            |
-| \'\<tr\>\<td\>%%{index}\</td\>\<td\>%{index}\</td\>\</tr\>\';         |
-|                                                                       |
-| strHtml +=                                                            |
-| \'\<tr\>\<td\>%%{dataset}\</td\>\<td\>%{dataset}\</td\>\</tr\>\';     |
-|                                                                       |
-| strHtml += \'\<tr\>\<td\>                                             |
-| %%{sequential_index}\</td\>\<td\>%{sequential_index}\</td\>\</tr\>\'; |
-|                                                                       |
-| strHtml += \'\<tr\>\<td\>%%{seq}\</td\>\<td\>%{seq}\</td\>\</tr\>\';  |
-|                                                                       |
-| strHtml +=                                                            |
-| \'\<tr\>\<td\>%%{value}\</td\>\<td\>%{value}\</td\>\</tr\>\';         |
-|                                                                       |
-| strHtml += \'\<tr\>\<td                                               |
-| \>%%{value_formatted}\</td\>\<td\>%{value_formatted}\</td\>\</tr\>\'; |
-|                                                                       |
-| strHtml +=                                                            |
-| \'\<tr\>\<td\>%%{property:xaxisLabels\[%%{dataset}\]}\</td\>\';       |
-|                                                                       |
-| strHtml +=                                                            |
-| \'\<td\>%{property:xaxisLabels\[%{dataset}\]}\</td\>\</tr\>\';        |
-|                                                                       |
-| strHtml += \'\<tr                                                     |
-| \>\<td\>%%{prop:title}\</td\>\<td\>%{prop:titleText}\</td\>\</tr\>\'; |
-|                                                                       |
-| strHtml += \'\<tr\>\<td\>%{property:myNames\[%%{dataset}\]} (custom   |
-| property)\</td\>\';                                                   |
-|                                                                       |
-| strHtml += \'\<td\>%{property:myNames\[%{dataset}\]}\</td\>\</tr\>\'; |
-|                                                                       |
-| strHtml +=                                                            |
-| \'\<tr\>\<td\>%%{key}\</td\>\<td\>%{key}\</td\>\</tr\>\</table\>\';   |
-|                                                                       |
-| var bar = new DxChartBar({                                            |
-|                                                                       |
-| id: cvs,                                                              |
-|                                                                       |
-| elem : canvas,                                                        |
-|                                                                       |
-| binddataset : this.Dataset00,                                         |
-|                                                                       |
-| data:\[\"bind:total\",\"bind:man\",\"bind:woman\"\],                  |
-|                                                                       |
-| options: {                                                            |
-|                                                                       |
-| //기본적인 설정은 Basic예제와 동일합니다                              |
-|                                                                       |
-| tooltips: { Data : strHtml ,// tooltips의 선언한 html Data를          |
-| 설정합니다.                                                           |
-|                                                                       |
-| // 사용자가 선언한 property로도 사용가능합니다.                       |
-|                                                                       |
-| myNames:DxChart.convertDataset(this.Dataset00,\["bind:indecators"\]), |
-|                                                                       |
-| }                                                                     |
-|                                                                       |
-| }                                                                     |
-|                                                                       |
-| }).draw();                                                            |
-+=======================================================================+
-|                                                                       |
-+-----------------------------------------------------------------------+
+```javascript
+var strHtml = "";
+strHtml += 'A summary of the template options that are available to you.<p />';
+strHtml += '<table border="1" align="center" cellspacing="0">';
+strHtml += '<tr><td>%%{index}</td><td>%{index}</td></tr>';
+strHtml += '<tr><td>%%{dataset}</td><td>%{dataset}</td></tr>';
+strHtml += '<tr><td>%%{sequential_index}</td><td>%{sequential_index}</td></tr>';
+strHtml += '<tr><td>%%{seq}</td><td>%{seq}</td></tr>';
+strHtml += '<tr><td>%%{value}</td><td>%{value}</td></tr>';
+strHtml += '<tr><td>%%{value_formatted}</td><td>%{value_formatted}</td></tr>';
+strHtml += '<tr><td>%%{property:xaxisLabels[%%{dataset}]}</td>';
+strHtml += '<td>%{property:xaxisLabels[%{dataset}]}</td></tr>';
+strHtml += '<tr><td>%%{prop:title}</td><td>%{prop:titleText}</td></tr>';
+strHtml += '<tr><td>%{property:myNames[%%{dataset}]} (custom property)</td>';
+strHtml += '<td>%{property:myNames[%{dataset}]}</td></tr>';
+strHtml += '<tr><td>%%{key}</td><td>%{key}</td></tr></table>';
+
+var bar = new DxChartBar({
+  id: cvs,
+  elem: canvas,
+  binddataset: this.Dataset00,
+  data: ["bind:total", "bind:man", "bind:woman"],
+  options: {
+    // 기본적인 설정은 Basic예제와 동일합니다
+    tooltips: {
+      Data: strHtml, // tooltips의 선언한 html Data를 설정합니다.
+      // 사용자가 선언한 property로도 사용가능합니다.
+      myNames: DxChart.convertDataset(this.Dataset00, ["bind:indecators"]),
+    },
+  },
+}).draw();
+```
 
 # **Effect 설정하기**
 
@@ -2520,65 +2398,50 @@ height="3.3129636920384953in"}
 
 ### wave
 
-![텍스트, 스크린샷, 라인, 폰트이(가) 표시된 사진 자동 생성된
-설명](media/image56.gif){width="4.591312335958005in"
-height="2.3970767716535435in"}
+![Effect1](../../assets/img/image56.gif)
 
 > 왼쪽에서 오른쪽으로 아래쪽에서 위쪽으로 애니메이션이 동시에
 > 일어납니다.
 
 기본적인 애니메이션 초당 Frame은 90입니다.
 
-+-----------------------------------------------------------------------+
-| var bar= New DxChartBar(config);                                      |
-|                                                                       |
-| bar.wave ();                                                          |
-+=======================================================================+
-|                                                                       |
-+-----------------------------------------------------------------------+
+```javascript
+ var bar= New DxChartBar(config);                               
+ bar.wave ();
+```
 
 ### grow
 
-![텍스트, 스크린샷, 라인, 번호이(가) 표시된 사진 자동 생성된
-설명](media/image57.gif){width="4.911912729658793in"
-height="2.5923742344706913in"}
+![Effect2](../../assets/img/image57.gif)
 
 > 아래쪽 또는 위쪽으로 애니메이션이 일어납니다. 기본적인 애니메이션 초당
 > Frame은 60입니다.
+```javascript
+ var bar= New DxChartBar(config);
+ bar.grow ();
+```
 
-+-----------------------------------------------------------------------+
-| var bar= New DxChartBar(config);                                      |
-|                                                                       |
-| bar.grow ();                                                          |
-+=======================================================================+
-|                                                                       |
-+-----------------------------------------------------------------------+
 
 ### trace
 
-![텍스트, 라인, 도표, 그래프이(가) 표시된 사진 자동 생성된
-설명](media/image58.gif){width="4.948454724409449in"
-height="2.4045395888014in"}
+![Effect3](../../assets/img/image58.gif)
 
 > 왼쪽에서 오른쪽으로 애니메이션이 일어납니다. (적용 대상 차트 : line ,
 > scatter , rader)
 
-+-----------------------------------------------------------------------+
-| var line= New DxChartLine(config);                                    |
-|                                                                       |
-| line. trace();                                                        |
-+=======================================================================+
-|                                                                       |
-+-----------------------------------------------------------------------+
+```javascript
+ var line= New DxChartLine(config);
+ line. trace();
+```
 
 ### unfold (toBottom)
 
-![텍스트, 라인, 도표, 그래프이(가) 표시된 사진 자동 생성된
-설명](media/image59.gif){width="5.094248687664042in"
-height="2.866123140857393in"}
+![Effect4](../../assets/img/image59.gif)
 
 > 아래쪽으로 애니메이션이 일어납니다. (적용 대상 차트 : line)
 
+
+```javascript
 +-----------------------------------------------------------------------+
 | var line= New DxChartLine(config);                                    |
 |                                                                       |
@@ -2586,7 +2449,7 @@ height="2.866123140857393in"}
 +=======================================================================+
 |                                                                       |
 +-----------------------------------------------------------------------+
-
+```
 ### unfoldFromCenterTrace (fromCenter)
 
 ![텍스트, 라인, 도표, 그래프이(가) 표시된 사진 자동 생성된
