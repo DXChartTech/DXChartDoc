@@ -11,14 +11,14 @@
    
    - [Nexacro Project 만들기](DxChart준비하기/DxChart_준비하기.md#nexacro-project-만들기)
    - [차트모듈 설치하기](DxChart준비하기/DxChart_준비하기.md#차트모듈-설치하기)
-   - [샘플화면 만들기](DxChart준비하기/DxChart_준비하기.md#샘플화면-만들기)
-   - [차트함수 만들기](DxChart준비하기/DxChart_준비하기.md#차트함수-만들기)
-   - [구성요소 용어 설명](DxChart준비하기/DxChart_준비하기.md#구성요소-용어-설명)
-   - [데이터 형식](DxChart준비하기/DxChart_준비하기.md#데이터-형식)
-     - [data Property](DxChart준비하기/DxChart_준비하기.md#data-property)
-     - [binddataset Property](DxChart준비하기/DxChart_준비하기.md#binddataset-property)
+   - [샘플화면 만들기](DxChart준비하기/DxChart_준비하기.md##샘플화면-만들기)
+   - [차트함수 만들기](DxChart준비하기/DxChart_준비하기.md##차트함수-만들기)
+   - [구성요소 용어 설명](DxChart준비하기/DxChart_준비하기.md##구성요소-용어-설명)
+   - [데이터 형식](DxChart준비하기/DxChart_준비하기.md##데이터-형식)
+     - [data Property](DxChart준비하기/DxChart_준비하기.md##data-property)
+     - [binddataset Property](DxChart준비하기/DxChart_준비하기.md##binddataset-property)
 
- [**2.** **DxChart 속성**](DxChart속성/DxChart_속성.md##DxChart-속성)
+ [**2.** **DxChart 속성**](DxChart속성/DxChart_속성.md#DxChart-속성)
 
    - [Margin (옵션 - margin 그룹)](DxChart속성/DxChart_속성.md#margin-옵션---margin-그룹)
    - [Margin Property 예제](DxChart속성/DxChart_속성.md#margin-사용-예제)

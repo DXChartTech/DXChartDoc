@@ -26,10 +26,15 @@
 - [**Multi Chart 생성하기**](#multi-chart-생성하기)
     - [Bar 및 Line 차트](#bar-및-line-차트)
     - [Bar 및 Pie 차트](#bar-및-pie-차트)
+
+  
+
+
   
 [**4.** **Multi Chart 생성하기**](#multi-chart-생성하기)
  - [Bar 및 Line 차트](#bar-및-line-차트)
  - [Bar 및 Pie 차트](#bar-및-pie-차트)
+
 
 
 
