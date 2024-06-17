@@ -1,3 +1,6 @@
+> <link rel="stylesheet" type="text/css" href="../index.css">
+
+
 
 > **DXChart 개발자 튜토리얼**
 >
@@ -2352,18 +2355,3 @@ var bar = new DxChartBar({
 
 
 
-<style>
-    table {
-        border-collapse: collapse;
-        width: 80%;
-        margin: auto; /* 테이블을 가운데 정렬 */
-    }
-    th, td {
-        border: 1px solid black;
-        text-align: center; /* 텍스트를 가운데 정렬 */
-        padding: 10px;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-</style>

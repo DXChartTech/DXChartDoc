@@ -1,3 +1,5 @@
+> <link rel="stylesheet" type="text/css" href="../index.css">
+
 
 > **DXChart 개발자 튜토리얼**
 >
