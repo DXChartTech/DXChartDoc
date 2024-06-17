@@ -5,7 +5,7 @@
 ---
 
 **\[목 차\]**
-각각의 목차를 클릭시 해당 페이지로 이동합니다
+각각의 목차의 ***대제목*** 을  클릭시 해당 페이지로 이동합니다
 
  [**1.** **DxChart 준비하기**](DxChart준비하기/DxChart_준비하기.md#dxchart-준비하기)
    - [Nexacro Project 만들기](#nexacro-project-만들기)
@@ -18,49 +18,48 @@
      - [binddataset Property](#binddataset-property)
 
  [**2.** **DxChart 속성**](DxChart속성/DxChart_속성.md##DxChart-속성)
+
    - [Margin (옵션 - margin 그룹)](#margin-옵션---margin-그룹)
    - [Margin Property 예제](#margin-사용-예제)
    - [Text Property 예제](#text-property-예제)
    - [제목 (옵션 - title 그룹)](#제목-옵션-title-그룹)
    - [X축 (옵션 - xaxis 그룹)](#x축-옵션-xaxis-그룹)
    - [Y축 (옵션 - yaxis 그룹)](#y축-옵션-yaxis-그룹)
-   - [배경 (옵션 - background 그룹)](#\_Toc162962562)
-   - [범례](#_Toc162962564)
-   - [툴팁](#_Toc162962565)
-   - [라벨 (옵션 - labels 그룹)](#\_Toc162962566)
-   - [그외](#_Toc162962570)
+   - [Background 설정하기](#background-설정하기)
+   - [Label 설정하기](#label-설정하기)
+   - [범례](#범례-설정하기)
+   - [툴팁](#툴팁-설정하기)
+   
+[**3.** **Effect 설정하기**](DxChartEffect설정하기/DxChart_Effect설정하기.md#effect-설정하기)
+
+   - [Draw](#draw)
+   - [drawAni](#drawani)
+   - [wave](#wave)
+   - [grow](#grow)
+   - [trace](#trace)
+   - [unfold](#unfold-tobottom)
+   - [unfoldFromCenterTrace (fromCenter)](#unfoldfromcentertrace-fromcenter)
+   - [foldtocenter (toCenter)](#foldtocenter-tocenter)
+   - [roundRobin 및 roundRobinSequential](#roundrobin-및-roundrobinsequential)
+   - [implode](#implode)
+   - [explode](#explode)
+   - [차트 별 Effect 종류](#차트-별-effect-종류)
 
 
-[**3.** **차트의 주요 메소드**](DxChart기타기능/DxChart_기타기능.md##차트의-주요-메소드)
-
-- [DxChart 오브젝트](#dxchart-오브젝트)
-  - [appendAxis](#appendaxis)
-  - [redraw](#redraw)
-  - [reset](#reset)
-  - [convertDataset](#convertdataset)
-  - [clear](#clear)
-  - [\...\* (이하 생략)\*](#shadecolor-clear)
-
-- [(2) Effect 종류](#effect-종류)
-  - [draw](#draw)
-  - [drawAni](#drawani)
-  - [wave](#wave)
-  - [\...\* (이하 생략)\*](#roundrobinsequential-explode)
-
-- [(3) 차트별 메소드](#차트별-메소드)
-  - [get](#get)
-  - [set](#set)
-  - [getValue](#getvalue)
-  - [on](#on)
-  - [\...\* (이하 생략)\*](#ontooltip)
+[**4.** **Multi Chart 생성하기**](DxChartEffect설정하기/DxChart_Effect설정하기.md#multi-chart-생성하기)
+   - [Bar 및 Line 차트](#bar-및-line-차트)
+   - [Bar 및 Pie 차트](#bar-및-pie-차트)
   
-- [(4) 이벤트 종류](#이벤트-종류)
-  - [onadjustbegin](#onadjustbegin)
-  - [onadjust](#onadjust)
-  - [\...\* (이하 생략)\*](#ontooltip-onmouseout)
+
+[**5.** **기타기능** ](DxChart기타기능/DxChart_기타기능.md#기타기능)
+
+   - [ConvertDataset](#convertdataset)
+
+   - [datachangeevent](#datachangeevent)   
 
 
-[**4.** **차트 종류**](#차트-종류)
+
+[**6.** **차트 종류**](#차트-종류)
 
 - [막대차트 (bar)](#막대차트bar)
 - [라인차트 (line)](#라인차트line)
@@ -89,8 +88,6 @@
 - [트리 차트 (tree)](#트리-차트tree)
 - [수직 진행 차트 (vprogress)](#수직-진행-차트vprogress)
 - [워터폴 차트 (waterfall)](#워터폴-차트waterfall)
-
-[**5.** **관련사이트**](#관련사이트)
 
 
 
